@@ -1,0 +1,9 @@
+
+app-chat-list .mdc-tab__text-label {
+    color: #9BA4B5 !important;
+    font-family: "Nunito";
+  }
+  
+  app-chat-list .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+    color: #FAF0E6 !important;
+  }

@@ -1,0 +1,36 @@
+<!-- app-app-bar.component.html -->
+<div class="bg-black w-full flex app-shell-app-bar">
+  <div class="w-1/12">
+    <p-button
+      pRipple
+      class="bg-black text-white side-nav-icon"
+      (onClick)="openSideNavBar()">
+      <i class="pi {{ isSideNavOpen ? 'pi-times' : 'pi-bars' }}" style="font-size: 2rem" ></i>
+    </p-button>
+  </div>
+  <div class="w-2/5">
+    <p-inputGroup>
+      <p-inputGroupAddon class="input_group_addon">
+        <i class="pi pi-search"></i>
+      </p-inputGroupAddon>
+      <input
+        pInputText
+        type="text"
+        class="appearance-none border-none outline-none focus:outline-none focus:ring-0 bg-white p-2 w-full"
+      />
+    </p-inputGroup>
+  </div>
+  <div class="w-2/5 user-menu-cont" >
+    <div class="flex">
+      
+    </div>
+    <!-- <mat-menu #menu="matMenu" class="mat-menu-cust">
+      <ng-container *ngFor="let link of links">
+        <a routerLink="/user" [queryParams]="{ tabName: link.label }" class="user-menu-link" mat-menu-item>
+          <i class="{{link.icon}}"></i>
+          <span class="user-manu-label">{{link.label}}</span>
+        </a>
+      </ng-container>
+    </mat-menu> -->
+  </div>
+</div>

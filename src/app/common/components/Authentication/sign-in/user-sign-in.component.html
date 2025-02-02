@@ -1,0 +1,52 @@
+<app-menu-bar></app-menu-bar>
+
+<div class="signin-container">
+    <div class="signin-carousal" >
+        <p-carousel 
+            class="w-full"
+            [value]="services"
+            [numVisible]="1" 
+            [numScroll]="1" 
+            [circular]="true" 
+            [autoplayInterval]="3000"
+            [responsiveOptions]="responsiveOptions">
+            <ng-template let-service pTemplate="item" >
+                <div class="carousal-card">
+                    <div class="carousal-card-header">
+                        <img src="{{service.imagePath}}" alt="" loading="lazy">
+                    </div>
+                    <div class="carousal-card-body">
+                        <p class="title">{{service.title}}</p>
+                        <p class="description">{{service.description}}</p>
+                    </div>
+                </div>
+            </ng-template>
+        </p-carousel>
+    </div>
+    <!-- <mat-divider [vertical]="true"></mat-divider> -->
+    <div class="signin-form-container">
+        <div class="w-full px-5">
+            <p>Login</p>
+            <div class="form-fields">
+                <label for="username">Username</label>
+                <input type="text" pInputText />
+            </div>
+            <div class="form-fields">
+                <label for="password">Password</label>
+                <input type="password" pInputText />
+            </div>
+            <div class="form-bottom">
+                <div>
+                    <input type="checkbox" class="remember-me-check" fieldLabel="Remember Password" [id]="'rememberPass'">
+                    <!-- <app-input-check-box class="remember-me-check" fieldLabel="Remember Password" [id]="'rememberPass'"></app-input-check-box> -->
+                </div>
+                <div>
+                    <a routerLink="">Forgot Password</a>
+                </div>
+            </div>
+            <div class="login-btn">
+                <button class="w-full" mat-raised-button>Log In</button>
+            </div>
+        </div>
+    </div>
+</div>

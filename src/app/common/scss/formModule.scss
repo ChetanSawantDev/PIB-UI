@@ -1,0 +1,25 @@
+
+.FM_input-invalid{
+    outline: 0.1em solid rgb(214, 15, 15) !important; /* Remove default focus outline */
+    box-shadow: none !important;
+}
+
+label{
+    color: #EADEDE;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    letter-spacing:0.06em;
+}
+
+.p-checkbox .p-checkbox-box.p-highlight {
+    border: none;
+    background: #35A29F !important;
+    box-shadow: 0 0 0 0.15rem #00dddd !important;
+}
+
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0.15rem #00dddd !important;
+    border: none !important;
+}

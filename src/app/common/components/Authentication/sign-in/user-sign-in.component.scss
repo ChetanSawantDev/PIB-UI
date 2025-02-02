@@ -1,0 +1,132 @@
+.signin-container{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.signin-carousal{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 0.9em;
+}
+
+::ng-deep .p-carousel-prev, 
+::ng-deep .p-carousel-next {
+  background-color: grey;
+  padding: 1.2em;
+  border-radius: 50%;
+}
+
+.carousal-card{
+
+}
+
+.carousal-card-header{
+    height: 55vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.carousal-card-header img{
+    width: 55%;
+    margin: auto;
+}
+
+.carousal-card-body{
+    padding: 0 2em;
+}
+
+.carousal-card-body .title{
+    font-family: "Nunito" sans-serif;
+    font-size: 1.8em;
+    font-weight: 500;
+    padding: 0.4em 0em;
+    color: #D1BB9E;
+}
+
+.carousal-card-body .description{
+    font-family: "Montserrat" sans-serif;
+    color: #A0937D;
+}
+
+
+.signin-form-container p{
+    font-family: "Montserrat", sans-serif !important;
+    font-weight: 600;
+    font-size: 2em;
+    color: #3f4948;
+}
+
+.signin-form-container{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 8em;
+    background-color: #C8B6A6;
+    height: 100%;
+}
+
+.form-fields{
+    width: 100%;
+    padding: 1em 2em 0em 1em;
+}
+
+.form-fields label{
+    width: 100%;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 1em;
+    color: #723600 !important;
+    font-weight: 500;
+}
+
+.form-fields input {
+    width: 100%;
+    margin: 0.4em 0em;
+    padding: 0.6em 0.8em;
+    font-family: "Montserrat", sans-serif !important;
+}
+
+.form-bottom{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6em 2em 0 1em;
+}
+
+.form-bottom label{
+    padding-left: 0.6em;
+}
+
+::ng-deep .remember-me-check > label {
+    font-family: "Montserrat";
+    font-size: 0.8em;
+    color: #723600 !important;
+    font-weight: 500;
+}
+
+a{
+    font-family: "Montserrat";
+    font-size: 0.8em;
+    color: #723600 !important;
+    font-weight: 500;
+}
+
+.login-btn{
+    width: 100%;
+    padding: 2em 2em 0em 1em;
+}
+
+.login-btn button{
+    background-color: #723600;
+    color: white;
+    font-family: "Montserrat";
+}
+

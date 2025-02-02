@@ -1,0 +1,43 @@
+/* styles.css or the component-specific CSS file */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .app-container .main-content {
+    flex: 1;
+    display: flex;
+  }
+  
+  .app-container app-side-nav-bar {
+    flex: 0 0 auto;
+  }
+  
+  .app-container .main-content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+.sidenav_container{
+  height: 93vh;
+}
+
+mat-sidenav{
+  background-color: #0D1117;
+  width: 75%;
+  height: 100%;
+}
+
+app-pl-gadmin {
+  width: 100%;
+}
+.main-content {
+  display: flex;
+  flex-direction: column; /* Stacks children vertically */
+}
+
+.main-content :nth-child(2){
+  flex: 1;
+}

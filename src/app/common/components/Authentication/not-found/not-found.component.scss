@@ -1,0 +1,59 @@
+@use '../../../scss/variables.scss' as fontVar;
+
+.not-found-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.not-found-head{
+    font-size: 3.1em;
+    font-family:  "Nunito", sans-serif;
+    font-weight: 600;
+    padding: 0.2em 0;
+    color: #77E4C8;
+}
+
+.not-found-desc{
+    font-family:"Nunito", sans-serif;
+    font-size: 1.2em;
+    color: #77E4C8;
+}
+
+.not-found-det{
+    width: 35%;
+}
+
+.not-found-img{
+    width: 35%;
+}
+
+.not-found-img img{
+    width: 70%;
+    margin: auto;
+}
+
+.btn-help{
+    padding: 0.4em 1.8em;
+    background-color: white;
+    font-family: "Open Sans", sans-serif;
+}
+
+.btn-home{
+    padding: 0.4em 1.8em;
+    background-color: #4B70F5;
+    border: 1px solid white;
+    background-color: #3f4948;
+    font-family: "Open Sans", sans-serif;
+    color: white;
+}
+
+.not-found-btn{
+    padding: 1em 0em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 40%;
+}
+

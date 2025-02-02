@@ -1,0 +1,49 @@
+
+.app-sidebar-container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    grid-template-rows: repeat(4, 1fr);
+}
+
+.app-sidebar-module-card{
+    padding: 10px;
+    width: 100%;
+}
+
+i{
+    color: #ffdcc7;
+    background-color: #723600 !important;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 1.6em;
+}
+
+.titleWithIcon span{
+    padding-left: 0.8em;
+    font-size: 1em;
+    color: #F0F8FF;
+}
+
+p{
+    font-size: 0.8em;
+    color: #aa9f9f;
+}
+
+.secondaryIcon{
+    position: absolute;
+    font-size: 0.8rem;
+    padding: 0px;
+    background-color: black;
+    top: 1.9em;
+    left: 1.9em;;
+}
+
+.titleWithIcon{
+    position: relative !important;
+    display: inline-block;
+}
+
+mat-card{
+    background-color: #495057;
+}

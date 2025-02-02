@@ -1,0 +1,34 @@
+
+
+.p-sidebar-content{
+    background-color: #000000 !important;   
+}
+
+.p-card{
+    background-color: #2F4F4F;
+    /* Simple shadow with a horizontal and vertical offset */
+
+    box-shadow: 4px 4px 8px rgba(229, 229, 229, 0.1) !important;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 8px;
+    height: 100%;
+}   
+
+
+@layer primeng {
+    .p-card .p-card-body {
+      padding: 0.8em 1em !important;
+    }
+}
+
+@layer primeng {
+    .p-card .p-card-content {
+      padding: 0.8em 0 !important;
+    }
+}
+
+.p-sidebar-header{
+    display: none;
+}
