@@ -1,3 +1,43 @@
-<div>
-    <input type="text" pInputText [(ngModel)]="_value" />
+<div class="px-2">
+    <p-floatLabel *ngIf="_fieldType === 'TEXT'" variant="on">
+        <input pInputText id="on_label" 
+                [ngClass]="{ 'ng-invalid ng-dirty': _isFieldInvalid }"
+                [required]="_isRequired"
+                [minLength]="_minLength" [maxlength]="_maxLength"
+                [style.width]="_width"
+                class="mont-400" 
+                [formControl]="_textValueControl"
+                autocomplete="off" />
+        <label for="on_label" class="nunito-300 custom-label">{{_fieldLabel}}<span *ngIf="_isRequired" class="text-red-500">*</span> </label>
+    </p-floatLabel>
+
+    <p-float-label *ngIf="_fieldType === 'NUMBER'" variant="on">
+        <p-inputnumber [formControl]="_numValueControl" 
+                        [required]="_isRequired"
+                        [disabled]="_isDisabled"
+                        [ngClass]="{ 'ng-invalid ng-dirty': _isFieldInvalid }"
+                        inputId="minmaxfraction" mode="decimal"
+                        [minlength]="_minLength" [maxlength]="_maxLength"
+                        [max]="_maxValue" [min]="_minValue"
+                        [minFractionDigits]="_minFractionDigit" [maxFractionDigits]="_maxFractionDigit"
+                        />
+        <label for="on_label" class="nunito-300 custom-label">{{_fieldLabel}}<span *ngIf="_isRequired" class="text-red-500">*</span> </label>
+    </p-float-label>
+
+    <p-floatLabel *ngIf="_fieldType === 'EMAIL'" variant="on">
+        <input pInputText id="on_label" 
+                [ngClass]="{ 'ng-invalid ng-dirty': _isFieldInvalid }"
+                [email]="true"
+                [required]="_isRequired"
+                [disabled]="_isDisabled"
+                [minLength]="_minLength" [maxlength]="_maxLength"
+                [style.width]="_width"
+                class="mont-400" style="font-size: 0.8rem; font-family: Montserrat; padding: 0.5rem 0.5rem;"
+                [formControl]="_textValueControl"
+                autocomplete="off" />
+        <label for="on_label" class="nunito-300 custom-label">{{_fieldLabel}}<span *ngIf="_isRequired" class="text-red-500">*</span> </label>
+    </p-floatLabel>
+
+
+    <p *ngIf="_isFieldInvalid" class="text-red-500 text-xs nunito-200 pl-1">{{_localError}}</p>
 </div>

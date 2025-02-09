@@ -9,8 +9,10 @@ import { InputImageUploadComponent } from './input-image-upload/input-image-uplo
 import { InputSelectUploadComponent } from './input-select-upload/input-select-upload.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import { FormsModule } from '@angular/forms';
-
-
+import { InputTextModule } from 'primeng/inputtext';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,11 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    FloatLabelModule,
+    InputTextModule,
+    InputNumberModule
   ],
   exports : [
     InputTextFieldComponent,

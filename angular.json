@@ -33,11 +33,7 @@
               }
             ],
             "styles": [
-              "src/styles.scss",
-              "node_modules/primeng/resources/themes/saga-blue/theme.css",  
-              "node_modules/primeng/resources/primeng.min.css",
-              "node_modules/primeicons/primeicons.css",
-              "src/assets/fonts.scss"
+              "src/styles.scss"
             ],
             "scripts": []
           },

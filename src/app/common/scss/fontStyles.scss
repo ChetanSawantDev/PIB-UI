@@ -1,0 +1,25 @@
+$_fontWeight: 100, 200, 300, 400, 500, 600, 700, 800, 900;
+$fontFamilies: (
+    "mont": "Montserrat",
+    "source-sans": "Source Sans 3",
+    "open-sans": "Open Sans",
+    "nunito": "Nunito",
+    "lato": "Lato"
+);
+
+@each $prefix, $font in $fontFamilies {
+    @each $_weight in $_fontWeight {
+        .#{$prefix}-#{$_weight} {
+            font-family: $font;
+            font-weight: $_weight;
+        }
+    }
+}
+
+
+
+.custom-field-text{
+    font-size: 0.8rem; 
+    font-family: Montserrat; 
+    padding: 0.5rem 0.5rem;
+}

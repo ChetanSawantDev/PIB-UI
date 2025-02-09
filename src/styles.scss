@@ -3,11 +3,9 @@
 
 @use "app/common/scss/commonModules.scss";
 @use "app/common/scss/tags_css.scss";
+@use "app/common/scss/fontStyles.scss";
 
 
-// Plus imports for other components in your app
-@import "primeng/resources/themes/lara-light-blue/theme.css";
-@import "primeng/resources/primeng.css";
 @import "app/common/scss/formModule.scss";
 
 
@@ -24,27 +22,32 @@ p-button:focus {
 }
 
 
-/* Remove default border and box-shadow for p-inputtext */
-.p-inputtext {
-    border: none !important; /* Removes the default border */
-    box-shadow: none !important; /* Removes the default box-shadow */
-    background-color: black; /* Custom background color */
-    color: white; /* Custom text color */
-}
+// /* Remove default border and box-shadow for p-inputtext */
+// .p-inputtext {
+//     border: none !important; /* Removes the default border */
+//     box-shadow: none !important; /* Removes the default box-shadow */
+//     background-color: black; /* Custom background color */
+//     color: white; /* Custom text color */
+// }
 
-/* Remove border and box-shadow on focus */
-.p-inputtext:focus {
-    outline: 0.1em solid #00dddd !important; /* Remove default focus outline */
-    box-shadow: none !important; /* Custom box-shadow on focus */
+// /* Remove border and box-shadow on focus */
+// .p-inputtext:focus {
+//     outline: 0.1em solid #00dddd !important; /* Remove default focus outline */
+//     box-shadow: none !important; /* Custom box-shadow on focus */
+// }
+
+
+input{
+  font-size: 0.8rem;  
 }
 
 .p-button:focus {
     box-shadow: none !important; 
 }
-/* Ensure placeholder text color is visible */
-.p-inputtext::placeholder {
-    color: white !important;
-}
+// /* Ensure placeholder text color is visible */
+// .p-inputtext::placeholder {
+//     color: white !important;
+// }
 
 /* Customize icon color */
 .pi-user {
@@ -105,7 +108,7 @@ app-user-activity{
   
   @font-face {
     font-family: 'Montserrat';
-    src: url('/assets/fonts//Montserrat/static/Montserrat-Regular.ttf') format('truetype');
+    src: url('/assets/fonts/Montserrat/static/Montserrat-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
   }
@@ -119,3 +122,6 @@ app-user-activity{
   
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+

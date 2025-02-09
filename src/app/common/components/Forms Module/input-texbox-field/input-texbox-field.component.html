@@ -1,1 +1,10 @@
-<p>input-texbox-field works!</p>
+<p-floatlabel variant="on">
+    <textarea pTextarea id="over_label" 
+                [required]="_isRequired"
+                [formControl]="_textValueControl" 
+                [disabled]="_isDisabled"
+                rows="5" cols="30" 
+                style="resize: none;"
+                class="h-full mont-300 custom-field-text"></textarea>
+    <label for="on_label">{{_fieldLabel}}</label>
+</p-floatlabel>

@@ -3,7 +3,10 @@
     
 
     <div class="flex w-100 h-75 mt-5">
-        <app-input-text-field></app-input-text-field>
+        <app-input-text-field [_fieldLabel]="'Name'" [_fieldType]="'TEXT'" [_isRequired]="true"></app-input-text-field>
+        <app-input-text-field [_fieldLabel]="'Age'" [_fieldType]="'NUMBER'"></app-input-text-field>
+        <app-input-text-field [_fieldLabel]="'Email Id'" [_fieldType]="'EMAIL'"></app-input-text-field>
+        <app-input-texbox-field [_fieldLabel]="'Address'"></app-input-texbox-field>
     </div>
 </div>  
-
+    
