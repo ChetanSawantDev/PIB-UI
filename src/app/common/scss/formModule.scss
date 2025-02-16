@@ -23,3 +23,30 @@ label{
     box-shadow: 0 0 0 0.15rem #00dddd !important;
     border: none !important;
 }
+
+textarea:focus {
+    border: none !important;
+    outline: inherit !important;
+}
+
+.p-datepicker-day {
+    font-size: 0.8rem !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    width: var(--p-datepicker-date-width);
+    height: var(--p-datepicker-date-height);
+    border-radius: var(--p-datepicker-date-border-radius);
+    transition: background var(--p-datepicker-transition-duration), color var(--p-datepicker-transition-duration), border-color var(--p-datepicker-transition-duration), box-shadow var(--p-datepicker-transition-duration), outline-color var(--p-datepicker-transition-duration);
+    border: 1px solid transparent;
+    outline-color: transparent;
+    color: var(--p-datepicker-date-color);
+}
+
+.p-datepicker-input{
+    font-size: 0.8rem !important;
+}

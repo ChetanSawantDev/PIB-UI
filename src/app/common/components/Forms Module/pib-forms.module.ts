@@ -13,6 +13,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DatePickerModule } from 'primeng/datepicker';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FloatLabelModule,
     InputTextModule,
-    InputNumberModule
+    InputNumberModule,
+    DatePickerModule
   ],
   exports : [
     InputTextFieldComponent,
@@ -40,7 +42,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     InputTexboxFieldComponent,
     InputFileUploadComponent,
     InputImageUploadComponent,
-    InputSelectUploadComponent
+    InputSelectUploadComponent,
+    DatePickerComponent
   ]
 })
 export class PibFormsModule { }

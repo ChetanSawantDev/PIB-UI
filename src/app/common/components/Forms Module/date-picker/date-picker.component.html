@@ -1,1 +1,28 @@
-<p>date-picker works!</p>
+
+<div class="px-2" [ngClass]="_selectionMode === 'single' ? 'date-mode' : 'date-range' ">
+    <p-floatlabel *ngIf="_selectionMode === 'single' || 'range'" variant="on">
+        <p-date-picker [formControl]="_dateValue" 
+            class="custom-field-text"
+            [showIcon]="true" [minDate]="_minDate" [maxDate]="_maxDate"
+            [selectionMode]="_selectionMode" 
+            [ariaLabel]="'Birth Date'"
+            dateFormat="dd.mm.yy"
+            inputId="buttondisplay" 
+            [showOnFocus]="false" >
+        </p-date-picker>
+        <label for="on_label">{{_fieldLabel}}</label>
+    </p-floatlabel>
+    <p-float-label style="width: auto;" *ngIf="_isTimeField" variant="on">
+        <p-datepicker [formControl]="_timeValue" 
+                    [iconDisplay]="'input'" 
+                    [showIcon]="true" 
+                    [timeOnly]="true" 
+                    inputId="templatedisplay"
+                    [hourFormat]="_timeFormat">
+            <ng-template pTemplate="inputicon" let-clickCallBack="clickCallBack">
+                <i class="pi pi-clock" (click)="clickCallBack($event)"></i>
+            </ng-template>
+        </p-datepicker>
+        <label for="on_label">Time</label>
+    </p-float-label>
+</div>

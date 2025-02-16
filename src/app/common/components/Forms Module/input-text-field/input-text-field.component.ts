@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { startWith, pairwise } from 'rxjs/operators';
 
 
@@ -10,136 +10,134 @@ import { startWith, pairwise } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
 })
 export class InputTextFieldComponent implements OnInit{
-  @Output()
-  public _getOutputValue : EventEmitter<string> =  new EventEmitter();
+  @Output() public _getOutputValue: EventEmitter<any> = new EventEmitter<any>();
 
-  public _textValueControl = new FormControl('');
-  public _numValueControl = new FormControl(null);
+  
+  public _textValueControl!: FormControl; // Used for TEXT and EMAIL types
+  public _numValueControl!: FormControl;  // Used for NUMBER type
 
+  //* Props For Fields
+  @Input() public _fieldLabel!: string;
+  @Input() public _maxLength!: number;
+  @Input() public _fieldType: 'TEXT' | 'NUMBER' | 'EMAIL' | 'CONTACT_NO' = 'NUMBER';
+  @Input() public _width: string = 'auto';
+  @Input() public _minLength: number = 0;
+  @Input() public _isRequired: boolean = false;
+  @Input() public _isDisabled: boolean = false;
+  @Input() public _isVisible: boolean = true;
 
-  //*Props For Fields
-  @Input() public _fieldLabel !: string;
-  @Input() public _maxLength !: number;
-  @Input() public _fieldType : 'TEXT' | 'NUMBER' | 'EMAIL' | 'CONTACT_NO' = 'NUMBER';
-  @Input() public _width : string = 'auto';
-  @Input() public _minLength : number = 0;
-  @Input() public _isRequired : boolean = false;
-  @Input() public _isDisabled : boolean = false;
-  @Input() public _isVisible : boolean = true;
+  //* Props For Number Field
+  @Input() public _minValue: number | null = null;
+  @Input() public _maxValue: number | null = null;
+  @Input() public _minFractionDigit: number = 0;
+  @Input() public _maxFractionDigit: number = 0;
 
-
-  //*Props For Number Field
-  @Input() public _minValue : number | null = null;
-  @Input() public _maxValue : number | null = null;
-  @Input() public _minFractionDigit : number = 0;
-  @Input() public _maxFractionDigit : number = 0;
-
-
-  public _isFieldInvalid: boolean = false;
   public _localError: string = '';
+  public _isFieldInvalid: boolean = false;
 
-  constructor(private _changeDitector : ChangeDetectorRef){
-  }
+  constructor() {}
+
   ngOnInit(): void {
+    // Initialize controls based on field type
+    if (this._fieldType === 'NUMBER') {
+      this.initializeNumberControl();
+    } else {
+      this.initializeTextControl();
+    }
+  }
+
+  private initializeTextControl(): void {
+    const validators = [];
+
+    if (this._isRequired) {
+      validators.push(Validators.required);
+    }
+    if (this._minLength) {
+      validators.push(Validators.minLength(this._minLength));
+    }
+    if (this._maxLength) {
+      validators.push(Validators.maxLength(this._maxLength));
+    }
+    if (this._fieldType === 'EMAIL') {
+      validators.push(Validators.email);
+    }
+
+    this._textValueControl = new FormControl('', validators);
+
+    if (this._isDisabled) {
+      this._textValueControl.disable();
+    }
+
     this._textValueControl.valueChanges
-      .pipe(
-        startWith(this._textValueControl.value),
-        pairwise()
-      )
-      .subscribe(([previousValue, currentValue]) => {
-        console.warn('Worked')
-        this._validateChangesForTextField(previousValue,currentValue);
+      .pipe(startWith(this._textValueControl.value), pairwise())
+      .subscribe(([prev, current]) => {
+        this.validateTextField();
+        this._getOutputValue.emit(current);
       });
+  }
+
+  private initializeNumberControl(): void {
+    const validators = [];
+
+    if (this._isRequired) {
+      validators.push(Validators.required);
+    }
+    if (this._minValue !== null) {
+      validators.push(Validators.min(this._minValue));
+    }
+    if (this._maxValue !== null) {
+      validators.push(Validators.max(this._maxValue));
+    }
+
+    this._numValueControl = new FormControl(null, validators);
+
+    if (this._isDisabled) {
+      this._numValueControl.disable();
+    }
 
     this._numValueControl.valueChanges
-      .pipe(
-        startWith(this._textValueControl.value),
-        pairwise()
-      )
-      .subscribe(([previousValue, currentValue]) => {
-        this._validateChangesForNumField(previousValue,currentValue);
+      .pipe(startWith(this._numValueControl.value), pairwise())
+      .subscribe(([prev, current]) => {
+        this.validateNumberField();
+        this._getOutputValue.emit(current);
       });
-
-      this._validateChangesForTextField('','');
-      this._validateChangesForNumField(null,null);
   }
 
-  _validateChangesForTextField(previousValue : string | null,currentValue: string | null){
-    if(this._fieldType === 'TEXT'){
-      let l_skip = false;
-
-      if(this._isRequired && currentValue?.length === 0){
-        this._isFieldInvalid = true;
-        this._localError = `${this._fieldLabel } is required`;
-        l_skip = true;
-      }else{
-        this._isFieldInvalid = false;
-        this._localError = ``;
+  private validateTextField(): void {
+    if (this._textValueControl.invalid && (this._textValueControl.touched || this._textValueControl.dirty)) {
+      this._isFieldInvalid = true;
+      if (this._textValueControl.hasError('required')) {
+        this._localError = `${this._fieldLabel} is required.`;
+      } else if (this._textValueControl.hasError('minlength')) {
+        this._localError = `${this._fieldLabel} must be at least ${this._minLength} characters.`;
+      } else if (this._textValueControl.hasError('maxlength')) {
+        this._localError = `${this._fieldLabel} cannot exceed ${this._maxLength} characters.`;
+      } else if (this._textValueControl.hasError('email')) {
+        this._localError = `Please enter a valid email address.`;
+      } else {
+        this._localError = `Invalid value.`;
       }
-
-      if(!l_skip){
-        if(currentValue && currentValue.length < this._minLength && !l_skip){
-          this._isFieldInvalid = true;
-          this._localError = `${this._fieldLabel } should be minimum of ${this._minLength} characters`;
-          l_skip = true;
-        }else{
-          this._isFieldInvalid = false;
-          this._localError = ``;
-        }
-      }
-
-      if(!l_skip){
-        if(currentValue && currentValue.length < this._minLength && !l_skip){
-          this._isFieldInvalid = true;
-          this._localError = `${this._fieldLabel } should be minimum ${this._minLength} characters`;
-          l_skip = true;
-        }else{
-          this._isFieldInvalid = false;
-          this._localError = ``;
-        }
-      }
+    } else {
+      this._isFieldInvalid = false;
+      this._localError = '';
     }
-
   }
 
-
-
-  _validateChangesForNumField(previousValue : string | number |null,currentValue: string |number |null){
-
-    let l_skip = false;
-
-    if(this._fieldType === 'NUMBER'){
-      if( this._isRequired && currentValue?.toLocaleString().length === 0){
-        this._isFieldInvalid = true;
-        this._localError = `${this._fieldLabel } is required`;
-        l_skip = true;
-      }else{
-        this._isFieldInvalid = false;
-        this._localError = ``;
+  private validateNumberField(): void {
+    if (this._numValueControl.invalid && (this._numValueControl.touched || this._numValueControl.dirty)) {
+      this._isFieldInvalid = true;
+      if (this._numValueControl.hasError('required')) {
+        this._localError = `${this._fieldLabel} is required.`;
+      } else if (this._numValueControl.hasError('min')) {
+        this._localError = `${this._fieldLabel} must be at least ${this._minValue}.`;
+      } else if (this._numValueControl.hasError('max')) {
+        this._localError = `${this._fieldLabel} cannot exceed ${this._maxValue}.`;
+      } else {
+        this._localError = `Invalid number.`;
       }
-  
-      if(l_skip){
-        if(currentValue && currentValue.toLocaleString().length < this._minLength){
-          this._isFieldInvalid = true;
-          this._localError = `${this._fieldLabel } should be minimum ${this._minLength} characters`;
-          l_skip = true;
-        }else{
-          this._isFieldInvalid = false;
-          this._localError = ``;
-        }
-      }
-  
-      if(l_skip){
-        if(currentValue && currentValue?.toLocaleString().length < this._minLength ){
-          this._isFieldInvalid = true;
-          this._localError = `${this._fieldLabel } is required`;
-          l_skip = true;
-        }else{
-          this._isFieldInvalid = false;
-          this._localError = ``;
-        }
-      }
+    } else {
+      this._isFieldInvalid = false;
+      this._localError = '';
     }
-
   }
 }

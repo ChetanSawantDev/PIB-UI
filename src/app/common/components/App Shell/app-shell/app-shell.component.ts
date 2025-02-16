@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges,ViewChild, ElementRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { SideNavBarComponent } from "../side-nav-bar/side-nav-bar.component";
 import { AppBarComponent } from "../app-bar/app-bar.component";
 import { PibFormsModule } from '../../Forms Module/pib-forms.module';
 
