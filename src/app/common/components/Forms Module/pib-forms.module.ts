@@ -14,6 +14,9 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DatePickerModule } from 'primeng/datepicker';
+import { CheckboxModule } from 'primeng/checkbox';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { FormContainerComponent } from './form-container/form-container.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,7 @@ import { DatePickerModule } from 'primeng/datepicker';
     InputImageUploadComponent,
     InputSelectUploadComponent,
     DatePickerComponent,
+    FormContainerComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +37,9 @@ import { DatePickerModule } from 'primeng/datepicker';
     FloatLabelModule,
     InputTextModule,
     InputNumberModule,
-    DatePickerModule
+    DatePickerModule,
+    CheckboxModule,
+    RadioButtonModule
   ],
   exports : [
     InputTextFieldComponent,
@@ -43,7 +49,8 @@ import { DatePickerModule } from 'primeng/datepicker';
     InputFileUploadComponent,
     InputImageUploadComponent,
     InputSelectUploadComponent,
-    DatePickerComponent
+    DatePickerComponent,
+    FormContainerComponent
   ]
 })
 export class PibFormsModule { }

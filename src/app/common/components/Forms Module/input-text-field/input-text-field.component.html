@@ -30,13 +30,12 @@
       </label>
     </p-floatLabel>
   
-    <p-floatLabel *ngIf="_fieldType === 'EMAIL'" variant="on">
+    <p-floatLabel style="width:210px" *ngIf="_fieldType === 'EMAIL'" variant="on">
       <input
         pInputText
         id="on_label"
         [ngClass]="{ 'ng-invalid ng-dirty': _isFieldInvalid }"
-        [style.width]="_width"
-        class="mont-400 custom-field-text"
+        class="mont-400 custom-field-text w-full"
         [formControl]="_textValueControl"
         autocomplete="off"
       />

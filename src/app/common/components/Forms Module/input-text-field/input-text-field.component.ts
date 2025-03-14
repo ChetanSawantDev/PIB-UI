@@ -48,7 +48,7 @@ export class InputTextFieldComponent implements OnInit{
 
   private initializeTextControl(): void {
     const validators = [];
-
+    
     if (this._isRequired) {
       validators.push(Validators.required);
     }
@@ -62,12 +62,11 @@ export class InputTextFieldComponent implements OnInit{
       validators.push(Validators.email);
     }
 
-    this._textValueControl = new FormControl('', validators);
+    this._textValueControl = new FormControl(null, validators);
 
     if (this._isDisabled) {
       this._textValueControl.disable();
     }
-
     this._textValueControl.valueChanges
       .pipe(startWith(this._textValueControl.value), pairwise())
       .subscribe(([prev, current]) => {

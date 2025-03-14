@@ -3,11 +3,16 @@
     
 
     <div class="flex w-100 h-75 mt-5">
-        <app-input-text-field [_fieldLabel]="'Name'" [_fieldType]="'TEXT'" [_isRequired]="true"></app-input-text-field>
-        <app-input-text-field [_fieldLabel]="'Age'" [_fieldType]="'NUMBER'" [_width]="'40px'"></app-input-text-field>
-        <app-input-text-field [_fieldLabel]="'Email Id'" [_fieldType]="'EMAIL'"></app-input-text-field>
-        <app-input-texbox-field [_fieldLabel]="'Address'"></app-input-texbox-field>
-        <app-date-picker [_selectionMode]="'single'"></app-date-picker>
+        <app-form-container [_formName]="'Gym Membership'">
+            <div class="flex">
+                <app-input-text-field [_fieldLabel]="'Name'" [_fieldType]="'TEXT'" [_isRequired]="true"></app-input-text-field>
+                <app-input-text-field [_fieldLabel]="'Age'" [_fieldType]="'NUMBER'" [_width]="'40px'"></app-input-text-field>
+                <app-input-text-field [_fieldLabel]="'Email Id'" [_fieldType]="'EMAIL'"></app-input-text-field>
+                <app-input-texbox-field [_fieldLabel]="'Address'"></app-input-texbox-field>
+                <app-date-picker [_selectionMode]="'single'"></app-date-picker>
+                <app-input-checkbox-field [_fieldLabel]="'Active'" [_isRequired]="true"></app-input-checkbox-field>
+            </div>
+        </app-form-container>
     </div>
 </div>  
     
