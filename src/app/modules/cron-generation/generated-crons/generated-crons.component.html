@@ -1,0 +1,28 @@
+<div class="w-10/12 mx-auto">
+    <p-table class="rounded-2xl" [value]="l_jobSchedulerData" stripedRows [tableStyle]="{'min-width': '50rem'}">
+        <ng-template #header>
+            <tr>
+                <th class="!font-mono">Job Name</th>
+                <th class="!font-mono">Job Group</th>
+                <th class="!font-mono">Is Durable</th>
+                <th class="!font-mono">Job State</th>
+                <th class="!font-mono">Is Updated</th>
+                <th class="!font-mono">Priority</th>
+                <th class="!font-mono">Start Time</th>
+                <th class="!font-mono">Next Fire Time</th>
+            </tr>
+        </ng-template>
+        <ng-template #body let-job_detail>
+            <tr>
+                <td class="!font-mono text-sm">{{job_detail.job_name}}</td>
+                <td class="!font-mono text-sm">{{job_detail.job_group}}</td>
+                <td class="!font-mono text-sm">{{job_detail.is_durable}}</td>
+                <td class="!font-mono text-sm">{{job_detail.trigger_state}}</td>
+                <td class="!font-mono text-sm">{{job_detail.is_update_data}}</td>
+                <td class="!font-mono text-sm">{{job_detail.priority}}</td>
+                <td class="!font-mono text-sm">{{job_detail.start_time}}</td>
+                <td class="!font-mono text-sm">{{job_detail.next_fire_time}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

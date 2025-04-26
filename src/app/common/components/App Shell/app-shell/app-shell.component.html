@@ -1,52 +1,19 @@
 <div class="app-container">
     <app-app-bar [isSideNavOpen]="sideBarVisible"></app-app-bar>
     
+    <div class="w-full mt-2">
+        <p-button class="mx-1" label="Create Cron" (onClick)="l_tab_name ='CREATE'" />
+        <p-button class="mx-1" label="Active Cron" (onClick)="l_tab_name ='LIST'" />
+    </div>
 
     <div class="flex w-100 h-75 mt-5">
-        <div class="flex w-full">
-            <div class="card w-2/3 mx-auto p-2 rounded-2xl bg-white">
-                <p-tabs value="0" class="w-full">
-                    <p-tablist class="flex w-full !justify-content-around">
-                        <p-tab value="0" class="!text-center !px-3 !py-2 !text-sm !font-mono !w-1/6 !flex ">Seconds</p-tab>
-                        <p-tab value="1" class="!text-center !px-3 !py-2 !text-sm !font-mono !w-1/6 !flex ">Minutes</p-tab>
-                        <p-tab value="2" class="!text-center !px-3 !py-2 !text-sm !font-mono !w-1/6 !flex">Hours</p-tab>
-                        <p-tab value="3" class="!text-center !px-3 !py-2 !text-sm !font-mono !w-1/6 !flex">Days</p-tab>
-                        <p-tab value="4" class="!text-center !px-3 !py-2 !text-sm !font-mono !w-1/6 !flex">Months</p-tab>
-                        <p-tab value="5" class="!text-center !px-3 !py-2 !text-sm !font-mono !w-1/6 !flex   ">Year</p-tab>
-                    </p-tablist>
-                    <p-tabpanels>
-                        <p-tabpanel value="0">
-                            <app-cron-per-seconds (l_get_seconds_selected)="l_get_seconds = $event; lFN_PrepareCronExpressoion();"></app-cron-per-seconds>
-                        </p-tabpanel>
-                        <p-tabpanel value="1">
-                            <app-cron-for-minutes (l_get_minutes_selected)="l_get_minutes = $event;  lFN_PrepareCronExpressoion();"></app-cron-for-minutes>
-                        </p-tabpanel>
-                        <p-tabpanel value="2">
-                           <app-cron-for-hours (l_get_hour_selected)="l_get_hours = $event;  lFN_PrepareCronExpressoion();"></app-cron-for-hours>
-                        </p-tabpanel>
-                        <p-tabpanel value="3">
-                           <app-cron-for-days (l_get_days_selected)="l_get_days = $event;  lFN_PrepareCronExpressoion();"></app-cron-for-days>
-                        </p-tabpanel>
-                        <p-tabpanel value="4">
-                           <app-cron-for-months (l_get_month_selected)="l_get_months =  $event;  lFN_PrepareCronExpressoion();"></app-cron-for-months>
-                        </p-tabpanel>
-                        <p-tabpanel value="5">
-                           <app-cron-for-year (l_get_year_selected)="l_get_years = $event;  lFN_PrepareCronExpressoion();"></app-cron-for-year>
-                        </p-tabpanel>
-                    </p-tabpanels>
-                    <p class="text-center text-xl w-2/12 rounded-lg bg-teal-500 m-auto">{{l_cron_description}}</p>
-                    <div class="flex flex-row-reverse p-2">
-                        <p-button label="Schedule" icon="pi pi-calendar-clock" [raised]="true" />
-                    </div>
-                </p-tabs>
-            </div>
+        <div class="w-full" *ngIf="l_tab_name === 'CREATE'" class="flex w-full">
+            <app-cron-generation-master class="w-full"></app-cron-generation-master>
+        </div>
+        <div class="w-full" *ngIf="l_tab_name === 'LIST'">
+            <app-generated-crons></app-generated-crons>
         </div>
     </div>
 
-    <div class="w-full">
-        <p>
-            {{l_generatedCronExpression}}
-        </p>
-    </div>
 </div>  
     
