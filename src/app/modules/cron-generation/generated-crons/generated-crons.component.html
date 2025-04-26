@@ -10,6 +10,7 @@
                 <th class="!font-mono">Priority</th>
                 <th class="!font-mono">Start Time</th>
                 <th class="!font-mono">Next Fire Time</th>
+                <th>Action</th>
             </tr>
         </ng-template>
         <ng-template #body let-job_detail>
@@ -22,7 +23,13 @@
                 <td class="!font-mono text-sm">{{job_detail.priority}}</td>
                 <td class="!font-mono text-sm">{{job_detail.start_time}}</td>
                 <td class="!font-mono text-sm">{{job_detail.next_fire_time}}</td>
+                <td>
+                    <div style="position: relative; display: inline-block;">
+                        <p-splitbutton appendTo="body" label="Save" (onClick)="save()" [model]="job_detail.l_action_buttons" />
+                    </div>
+                </td>
             </tr>
         </ng-template>
     </p-table>
 </div>
+<p-toast></p-toast>
