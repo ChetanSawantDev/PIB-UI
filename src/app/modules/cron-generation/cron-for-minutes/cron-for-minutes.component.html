@@ -1,0 +1,24 @@
+<div class="w-full" >
+  <div class="flex items-center mb-2">
+      <p-checkBox binary="true" [(ngModel)]="l_minutes_to_choose.EACH_MINUTE" inputId="second_1" (ngModelChange)="lFN_ChooseMinutes('EACH_MINUTE');" />
+      <label for="second_1" class="ml-2 !text-sm !text-stone-900">Every Minute</label>
+  </div>
+
+  <div class="w-full">
+      <div class="flex items-center mb-2">
+          <p-checkBox binary="true" [(ngModel)]="l_minutes_to_choose.MINUTES_CHOOSE_FROM" inputId="second_3" (ngModelChange)="lFN_ChooseMinutes('MINUTES_CHOOSE_FROM');" />
+          <label for="second_3" class="ml-2 !text-sm !text-stone-900">Specific Minute (Choose one or Many)</label>
+      </div>
+      <div *ngIf="l_minutes_to_choose.MINUTES_CHOOSE_FROM" class="w-full  grid grid-cols-10 gap-4">
+          <ng-container *ngFor="let l_second of l_seconds; let i = index">
+              <p-chip>
+                <p-checkbox [(ngModel)]="l_second.l_checked" binary="true" inputId="secondCheckbox{{ i }}" (ngModelChange)="lFN_ChooseMinutes('MINUTES_CHOOSE_FROM');" class="text-sm small-checkbox"
+                ></p-checkbox>
+                <label [for]="'secondCheckbox' + i" class="text-xs !text-stone-900 !font-semibold pl-1">
+                  {{ l_second.l_label_name }}
+                </label>
+              </p-chip>
+            </ng-container>
+      </div>
+  </div>
+</div>

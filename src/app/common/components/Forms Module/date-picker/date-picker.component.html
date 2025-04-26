@@ -3,7 +3,6 @@
     <p-floatlabel *ngIf="_selectionMode === 'single' || 'range'" variant="on">
         <p-date-picker [formControl]="_dateValue" 
             class="custom-field-text"
-            [placeholder]="'dd/mm/yyyy'"
             [showIcon]="true" [minDate]="_minDate" [maxDate]="_maxDate"
             [selectionMode]="_selectionMode" 
             [ariaLabel]="'Birth Date'"

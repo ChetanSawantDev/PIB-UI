@@ -1,0 +1,46 @@
+<div class="w-full" >
+    <div class="flex items-center mb-2">
+        <p-checkbox [(ngModel)]="l_days_to_choose.EACH_DAY" inputId="second_1" binary="true" (ngModelChange)="lFN_ChooseDays('EACH_DAY')" />
+        <label for="second_1" class="ml-2 !text-sm !text-stone-900">Each Day</label>
+    </div>
+    <div class="w-full">
+        <div class="flex items-center mb-2">
+            <p-checkbox [(ngModel)]="l_days_to_choose.SPECIFIC_DAY_OF_WEEK" binary="true" inputId="second_2" (ngModelChange)="lFN_ChooseDays('SPECIFIC_DAY_OF_WEEK')"  />
+            <label for="second_2" class="ml-2 !text-sm !text-stone-900">Specific Day Of The Week (Choose one or Many)</label>
+        </div>
+        <div *ngIf="l_days_to_choose.SPECIFIC_DAY_OF_WEEK" class="w-full  grid grid-cols-7 gap-4">
+            <ng-container *ngFor="let l_second of l_week_days; let i = index">
+                <p-chip>
+                  <p-checkbox [(ngModel)]="l_second.l_checked" binary="true" binary="true" inputId="weekCheckbox{{ i }}" (ngModelChange)="lFN_ChooseDays('SPECIFIC_DAY_OF_WEEK')" class="text-sm small-checkbox"
+                  ></p-checkbox>
+                  <label [for]="'weekCheckbox' + i" class="text-xs !text-stone-900 !font-semibold pl-1">
+                    {{ l_second.l_label_name }}
+                  </label>
+                </p-chip>
+              </ng-container>
+        </div>
+    </div>
+
+    <div class="w-full">
+        <div class="flex items-center mb-2">
+            <p-checkbox [(ngModel)]="l_days_to_choose.SPECIFIC_DAY_OF_MONTH" binary="true" inputId="second_3" (ngModelChange)="lFN_ChooseDays('SPECIFIC_DAY_OF_MONTH')"/>
+            <label for="second_3" class="ml-2 !text-sm !text-stone-900">Specific day of the month (Choose one or Many)</label>
+        </div>
+        <div *ngIf="l_days_to_choose.SPECIFIC_DAY_OF_MONTH" class="w-full  grid grid-cols-10 gap-4">
+            <ng-container *ngFor="let l_second of l_days; let i = index">
+                <p-chip>
+                  <p-checkbox [(ngModel)]="l_second.l_checked" binary="true" inputId="secondCheckbox{{ i }}" (ngModelChange)="lFN_ChooseDays('SPECIFIC_DAY_OF_MONTH')" class="text-sm small-checkbox"
+                  ></p-checkbox>
+                  <label [for]="'secondCheckbox' + i" class="text-xs !text-stone-900 !font-semibold pl-1">
+                    {{ l_second.l_label_name }}
+                  </label>
+                </p-chip>
+              </ng-container>
+        </div>
+    
+    </div>
+    <div class="flex items-center mb-2">
+        <p-checkbox [(ngModel)]="l_days_to_choose.LAST_DAY_OF_MONTH" binary="true" inputId="second_4" (ngModelChange)="lFN_ChooseDays('LAST_DAY_OF_MONTH')" />
+        <label for="second_4" class="ml-2 !text-sm !text-stone-900">Last day of month</label>
+    </div>
+</div>

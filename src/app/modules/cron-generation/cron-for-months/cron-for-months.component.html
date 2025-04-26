@@ -1,0 +1,30 @@
+<div class="w-full" >
+    <div class="flex items-center mb-2">
+        <p-checkBox binary="true" [(ngModel)]="l_month_to_choose.EACH_MONTH" inputId="second_1" (ngModelChange)="lFN_ChooseMonth('EACH_MONTH')" />
+        <label for="second_1" class="ml-2 !text-sm !text-stone-900">Each Month</label>
+    </div>
+    <div class="w-full mb-2">
+        <div class="flex items-center mb-2">
+            <p-checkBox binary="true" [(ngModel)]="l_month_to_choose.SPECIFIC_MONTH_OF_YEAR" (ngModelChange)="lFN_ChooseMonth('SPECIFIC_MONTH_OF_YEAR')"  inputId="second_2" />
+            <label for="second_2" class="ml-2 !text-sm !text-stone-900">Specific month of the year (Choose one or Many)</label>
+        </div>
+        <div *ngIf="l_month_to_choose.SPECIFIC_MONTH_OF_YEAR" class="w-full  grid grid-cols-6 gap-4">
+            <ng-container *ngFor="let l_second of l_months; let i = index">
+                <p-chip>
+                  <p-checkbox [(ngModel)]="l_second.l_checked" binary="true" (ngModelChange)="lFN_ChooseMonth('SPECIFIC_MONTH_OF_YEAR')" inputId="secondCheckbox{{ i }}" class="text-sm small-checkbox"
+                  ></p-checkbox>
+                  <label [for]="'secondCheckbox' + i" class="text-xs !text-stone-900 !font-semibold pl-1">
+                    {{ l_second.l_label_name }}
+                  </label>
+                </p-chip>
+              </ng-container>
+        </div>
+    </div>
+    <div class="flex items-center mb-2">
+        <p-checkBox binary="true" [(ngModel)]="l_month_to_choose.MONTHS_BETWEEN" (ngModelChange)="lFN_ChooseMonth('MONTHS_BETWEEN')"  inputId="second_3" />
+        <label for="second_3" class="ml-2 !text-sm !text-stone-900">Every month between</label>
+        <p-select [disabled]="!l_month_to_choose.MONTHS_BETWEEN" [options]="l_month_select_list" [(ngModel)]="l_selectedFromMonth" (ngModelChange)="lFN_ChooseMonth('MONTHS_BETWEEN')"  optionLabel="name" placeholder="From Month" class="w-full md:w-56" />
+        <label for="second_3" class="ml-2 !text-sm !text-stone-900">and</label>
+        <p-select [disabled]="!l_month_to_choose.MONTHS_BETWEEN" [options]="l_month_select_list" [(ngModel)]="l_selectedToMonth" (ngModelChange)="lFN_ChooseMonth('MONTHS_BETWEEN')"  optionLabel="name" placeholder="To Month" class="w-full md:w-56" />
+    </div>
+</div>

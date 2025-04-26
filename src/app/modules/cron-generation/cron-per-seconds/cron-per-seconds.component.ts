@@ -1,94 +1,71 @@
-import { Component, Input,OnInit } from '@angular/core';
-import { AppBarComponent } from "../app-bar/app-bar.component";
-import { PibFormsModule } from '../../Forms Module/pib-forms.module';
-import { TabsModule } from 'primeng/tabs';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Chip } from 'primeng/chip';
 import { CheckboxModule } from 'primeng/checkbox';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { CronPerSecondsComponent } from "../../../../modules/cron-generation/cron-per-seconds/cron-per-seconds.component";
-import { CronForMinutesComponent } from "../../../../modules/cron-generation/cron-for-minutes/cron-for-minutes.component";
-import { CronForHoursComponent } from "../../../../modules/cron-generation/cron-for-hours/cron-for-hours.component";
-import { CL_RespDaySelection, CronForDaysComponent } from "../../../../modules/cron-generation/cron-for-days/cron-for-days.component";
-import { CronForMonthsComponent } from "../../../../modules/cron-generation/cron-for-months/cron-for-months.component";
-import { CronForYearComponent } from "../../../../modules/cron-generation/cron-for-year/cron-for-year.component";
-import { isValidCron } from 'cron-validator';
+import { RadioButton } from 'primeng/radiobutton';
 
-import { ButtonModule } from 'primeng/button';
 @Component({
-  selector: 'app-app-shell',
-  templateUrl: './app-shell.component.html',
-  styleUrl: './app-shell.component.scss',
-  standalone : true,
-  imports: [AppBarComponent, PibFormsModule, TabsModule, ButtonModule, CheckboxModule, ReactiveFormsModule, CommonModule, FormsModule, CronPerSecondsComponent, CronForMinutesComponent, CronForHoursComponent, CronForDaysComponent, CronForMonthsComponent, CronForYearComponent]
+  selector: 'app-cron-per-seconds',
+  standalone: true,
+  imports: [Chip, CheckboxModule,CommonModule,FormsModule,RadioButton],
+  templateUrl: './cron-per-seconds.component.html',
+  styleUrl: './cron-per-seconds.component.scss'
 })
-export class AppShellComponent {
-  @Input() public sideBarVisible!:boolean;
-  
+export class CronPerSecondsComponent {
+  public l_seconds : CL_SecondsSelection[] = l_seconds;
+  public l_seconds_to_choose : CL_SelectedSecond = {};
+  @Output() public l_get_seconds_selected : EventEmitter<string> = new EventEmitter();
 
 
-
-  public l_generatedCronExpression : string = ''; 
-  public l_get_seconds : string = '';
-  public l_get_minutes : string = '';
-  public l_get_hours : string = '';
-  public l_get_days : CL_RespDaySelection = {l_days : '',l_days_of_week : false};
-  public l_get_months : string = '';
-  public l_get_years : string = '';
-  public l_cron_description : string = '';
-
-  constructor() {
-    
+  lFN_ChooseSeconds(l_type : keyof CL_SelectedSecond){
+    if(this.l_seconds_to_choose.EACH_SECOND){
+      this.l_get_seconds_selected.emit('*');
+    }else if(this.l_seconds_to_choose.SECONDS_CHOOSE_FROM){
+      let l_seconds_selected : any = '';
+      l_seconds.forEach(l_second_mast=>{
+        if(l_second_mast.l_checked){
+          l_seconds_selected = l_seconds_selected !== '' ? ( l_seconds_selected + ',' + l_second_mast.l_value) : l_second_mast.l_value;   
+        }
+      })
+      this.l_get_seconds_selected.emit(l_seconds_selected);
+    }
+    this.lFN_ForceSingleCheck(l_type);
   }
-
-  lFN_PrepareCronExpressoion(){
-
-    let l_cron_expression_array = [];
-
-    // Seconds
-    l_cron_expression_array[0] = this.l_get_seconds || '0';
-
-    // Minutes
-    l_cron_expression_array[1] = this.l_get_minutes || '0';
-
-    // Hours
-    l_cron_expression_array[2] = this.l_get_hours || '0';
-
-    // Month
-    l_cron_expression_array[4] = this.l_get_months || '*';
-
-    // Day of Month & Day of Week
-    if (this.l_get_days.l_days_of_week && this.l_get_days.l_days) {
-      // If both are present, prefer DayOfWeek and set DayOfMonth to '?'
-      l_cron_expression_array[3] = '?';
-      l_cron_expression_array[5] = this.l_get_days.l_days;
-    } else if (this.l_get_days.l_days_of_week) {
-      // If only DayOfWeek is intended to be used
-      l_cron_expression_array[3] = '?';
-      l_cron_expression_array[5] = this.l_get_days.l_days || '*';
-    } else if (this.l_get_days.l_days) {
-      // If only DayOfMonth is present
-      l_cron_expression_array[3] = this.l_get_days.l_days;
-      l_cron_expression_array[5] = '?';
-    } else {
-      // If neither is present, default safely
-      l_cron_expression_array[3] = '*';
-      l_cron_expression_array[5] = '?';
+  lFN_ForceSingleCheck(l_type : keyof CL_SelectedSecond){
+    if(l_type === 'EACH_SECOND' && this.l_seconds_to_choose.EACH_SECOND){
+      this.l_seconds_to_choose.SECONDS_CHOOSE_FROM = false;
+    }else if(l_type === 'SECONDS_CHOOSE_FROM' && this.l_seconds_to_choose.SECONDS_CHOOSE_FROM){
+      this.l_seconds_to_choose.EACH_SECOND = false;
+    }else{
+      this.l_seconds_to_choose.EACH_SECOND = false;
+      this.l_seconds_to_choose.SECONDS_CHOOSE_FROM =false;
+      this.l_get_seconds_selected.emit('');
     }
-
-    // Year (optional)
-    if (this.l_get_years) {
-      l_cron_expression_array[6] = this.l_get_years;
-    }
-
-    let l_expression = l_cron_expression_array.join(' ');
-
-    this.l_cron_description = l_expression; 
   }
 
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+interface CL_SelectedSecond {
+  EACH_SECOND ?: boolean;
+  EACH_SECOND_START_FROM ?: boolean;
+  SECONDS_CHOOSE_FROM ?: boolean;
+  SECONDS_RANGE ?: boolean;
+}
 
 export class CL_SecondsSelection{
   public l_label_name : string ="";

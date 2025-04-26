@@ -16,7 +16,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DatePickerModule } from 'primeng/datepicker';
 import { CheckboxModule } from 'primeng/checkbox';
 import { RadioButtonModule } from 'primeng/radiobutton';
-import { FormContainerComponent } from './form-container/form-container.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +26,7 @@ import { FormContainerComponent } from './form-container/form-container.componen
     InputFileUploadComponent,
     InputImageUploadComponent,
     InputSelectUploadComponent,
-    DatePickerComponent,
-    FormContainerComponent
+    DatePickerComponent
   ],
   imports: [
     CommonModule,
@@ -49,8 +47,7 @@ import { FormContainerComponent } from './form-container/form-container.componen
     InputFileUploadComponent,
     InputImageUploadComponent,
     InputSelectUploadComponent,
-    DatePickerComponent,
-    FormContainerComponent
+    DatePickerComponent
   ]
 })
 export class PibFormsModule { }

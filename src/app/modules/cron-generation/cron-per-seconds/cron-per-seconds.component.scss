@@ -1,0 +1,24 @@
+
+p-tab{
+    justify-content: center !important;
+  }
+  
+  ::ng-deep .p-checkbox-box {
+    margin-top: 2px;
+    width: 15px !important;   /* Increase checkbox size */
+    height: 15px !important;  /* Increase checkbox size */
+  }
+  
+  ::ng-deep .p-chip{
+    background-color: #AFDDFF !important;
+    padding: 4px 8px !important;
+  }
+  
+  
+  ::ng-deep .p-checkbox-icon{
+    padding: 2px !important;
+  }
+  
+  ::ng-deep .p-chip{
+    gap: 0px !important;
+  }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormContainerComponent } from './form-container.component';
+import { CronForMonthsComponent } from './cron-for-months.component';
 
-describe('FormContainerComponent', () => {
-  let component: FormContainerComponent;
-  let fixture: ComponentFixture<FormContainerComponent>;
+describe('CronForMonthsComponent', () => {
+  let component: CronForMonthsComponent;
+  let fixture: ComponentFixture<CronForMonthsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormContainerComponent]
+      imports: [CronForMonthsComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FormContainerComponent);
+    fixture = TestBed.createComponent(CronForMonthsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

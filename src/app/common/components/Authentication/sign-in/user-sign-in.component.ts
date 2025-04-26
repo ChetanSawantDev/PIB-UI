@@ -4,6 +4,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { TagModule } from 'primeng/tag';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
+import { ApiService } from '../../../configuration/remote/ApiClient.service';
 
 @Component({
   selector: 'app-user-sign-in',
@@ -16,7 +17,12 @@ export class UserSignInComponent implements OnInit {
   
   responsiveOptions: any[] | undefined;
   services!: any[];
-  
+  public l_formData : any = {};
+
+  constructor(private _apiService : ApiService){
+
+  }
+
   ngOnInit(): void {
     this.responsiveOptions = [
       {
@@ -93,4 +99,14 @@ export class UserSignInComponent implements OnInit {
 
 
 
+  async lFN_Login(){
+    let _url =  `http://localhost:8181/auth/authenticateUser/login`;
+    let userCredentials = {
+      "username" : 'chetan',
+      "password" : "Arthur@8149"
+  }
+    this._apiService.gFN_PostApiCall(_url,userCredentials).subscribe(resp=>{
+      console.warn(resp);
+    });
+  }
 }

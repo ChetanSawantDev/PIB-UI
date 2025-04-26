@@ -29,11 +29,11 @@
             <p>Login</p>
             <div class="form-fields">
                 <label for="username">Username</label>
-                <input type="text" pInputText />
+                <input type="text" pInputText oninput="l_formData.l_password = $event" />
             </div>
             <div class="form-fields">
                 <label for="password">Password</label>
-                <input type="password" pInputText />
+                <input type="password" pInputText oninput="l_formData.l_password = $event" />
             </div>
             <div class="form-bottom">
                 <div>
@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="login-btn">
-                <button class="w-full" mat-raised-button>Log In</button>
+                <button class="w-full" mat-raised-button (click)="lFN_Login()">Log In</button>
             </div>
         </div>
     </div>

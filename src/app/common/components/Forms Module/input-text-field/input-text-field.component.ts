@@ -35,7 +35,8 @@ export class InputTextFieldComponent implements OnInit{
   public _localError: string = '';
   public _isFieldInvalid: boolean = false;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit(): void {
     // Initialize controls based on field type

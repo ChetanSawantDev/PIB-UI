@@ -6,7 +6,7 @@ import { FormControl } from '@angular/forms';
   templateUrl: './input-radio-field.component.html',
   styleUrl: './input-radio-field.component.scss'
 })
-export class InputRadioFieldComponent {
+export class InputRadioFieldComponent{
   public _l_value : FormControl = new FormControl(0);
 
   @Input()
