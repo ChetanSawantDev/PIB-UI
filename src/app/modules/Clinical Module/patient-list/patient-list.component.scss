@@ -1,0 +1,29 @@
+::ng-deep th{
+    font-family: 'Montserrat' !important;
+  font-size: 0.9rem !important;
+}
+
+::ng-deep td{
+    font-family: 'Lato' !important;
+    font-size: 0.8rem !important;
+}
+
+::ng-deep td button{
+    width: 24px !important;
+}
+
+::ng-deep .p-select-label{
+    font-family: 'Montserrat' !important;
+    padding: 4px 8px;
+    font-size: 0.8rem;
+}
+
+::ng-deep .p-select-option{
+    font-family: 'Nonito' !important;
+    padding: 4px 8px;
+    font-size: 0.8rem;
+}
+
+::ng-deep .p-dialog-title {
+    font-family: 'Montserrat' !important;
+}

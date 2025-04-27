@@ -8,20 +8,51 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { CronGenerationMasterComponent } from "../../../../modules/cron-generation/cron-generation-master/cron-generation-master.component";
 import { GeneratedCronsComponent } from "../../../../modules/cron-generation/generated-crons/generated-crons.component";
-
+import { PatientListComponent } from "../../../../modules/Clinical Module/patient-list/patient-list.component";
+import { MenuItem } from 'primeng/api';
+import { PanelMenu } from 'primeng/panelmenu';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-app-shell',
   templateUrl: './app-shell.component.html',
   styleUrl: './app-shell.component.scss',
   standalone : true,
-  imports: [AppBarComponent, CronGenerationMasterComponent, PibFormsModule, TabsModule ,ButtonModule, CheckboxModule, ReactiveFormsModule, CommonModule, FormsModule, CronGenerationMasterComponent, GeneratedCronsComponent]
+  imports: [AppBarComponent,PanelMenu, CronGenerationMasterComponent, PibFormsModule,RouterOutlet, TabsModule, ButtonModule, CheckboxModule, ReactiveFormsModule, CommonModule, FormsModule, CronGenerationMasterComponent, GeneratedCronsComponent, PatientListComponent]
 })
-export class AppShellComponent {
+export class AppShellComponent implements OnInit{
+  public items?: MenuItem[];
   @Input() public sideBarVisible!:boolean;
   
   public l_tab_name : 'CREATE' | 'LIST' = 'CREATE';
 
+
+  ngOnInit(): void {
+    this.items = [
+        {
+            label: 'Clinical',
+            items: [
+                {
+                    label: 'Patient List',
+                    routerLink : '/'
+                },
+                {
+                    label: 'Investigation List',
+                    routerLink : '/investigationHistory'
+                }
+            ]
+        },
+        {
+            label: 'Scheduler Settings',
+            items: [
+                {
+                    label: 'Update Schedules',
+                    routerLink : '/'
+                },
+            ]
+        },
+    ]
+}
 
 }
 

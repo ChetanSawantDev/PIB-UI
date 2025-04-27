@@ -73,3 +73,39 @@ p-tab{
   font-family: 'Montserrat' !important;
   font-size: 0.8rem !important;
 }
+
+::ng-deep .p-panelmenu{
+  width: 100% !important;
+  gap: 0px !important;
+  background-color: #d4d4d8 !important;
+  color: black !important;
+}
+
+::ng-deep .p-panelmenu-panel {
+  padding: 0px !important;
+  border-radius: 0px !important;
+  border: 0px !important;
+  background-color: #d4d4d8 !important;
+  color: black !important;
+}
+
+::ng-deep .p-panelmenu-header-link{
+  padding: 4px 6px !important;
+  font-family: 'Montserrat' !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+  background-color: #d4d4d8 !important;
+  color: black !important;
+}
+
+::ng-deep .p-panelmenu-item-link{
+  font-family: 'Montserrat' !important;
+  font-size: 0.8rem !important;
+  padding-left: 22px !important;
+  background-color: #d4d4d8 !important;
+  color: black !important;
+}
+
+::ng-deep .p-panelmenu-submenu-icon {
+  width: 12px !important;
+}

@@ -1,19 +1,28 @@
 <div class="app-container">
     <app-app-bar [isSideNavOpen]="sideBarVisible"></app-app-bar>
     
-    <div class="w-full mt-2">
+    <!-- <div class="w-full mt-2">
         <p-button class="mx-1" label="Create Cron" (onClick)="l_tab_name ='CREATE'" />
         <p-button class="mx-1" label="Active Cron" (onClick)="l_tab_name ='LIST'" />
-    </div>
+    </div> -->
 
-    <div class="flex w-100 h-75 mt-5">
+    <!-- <div class="flex w-100 h-75 mt-5">
         <div class="w-full" *ngIf="l_tab_name === 'CREATE'" class="flex w-full">
             <app-cron-generation-master class="w-full"></app-cron-generation-master>
         </div>
         <div class="w-full" *ngIf="l_tab_name === 'LIST'">
             <app-generated-crons></app-generated-crons>
         </div>
-    </div>
+    </div> -->
 
+
+    <div class="w-full flex" style="height: calc(100vh - 48px);">
+        <div class="w-2/12 py-2 h-full bg-zinc-300">
+            <p-panelmenu [model]="items" styleClass="w-full md:w-80" />
+        </div>
+        <div class="w-10/12 !h-full">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
 </div>  
     
