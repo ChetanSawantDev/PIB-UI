@@ -44,8 +44,8 @@ export interface InvestigationLevel2 {
 }
 
 export interface InvestigationLevel1 {
-  investigation_level_id?: string;
-  investigation_level1_name: string;
+  investigationLevelId?: string;
+  investigationLevel1Name: string;
   unit: string;
   referenceRange: string;
   type: string;

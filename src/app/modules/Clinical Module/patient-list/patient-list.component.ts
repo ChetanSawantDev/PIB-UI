@@ -46,9 +46,11 @@ export class PatientListComponent implements OnInit, AfterViewInit{
     this.l_clinicalServiceService.getInvestigations().subscribe({
       next: (data) => {
         this.l_investigation_list = data;
+        console.warn(this.l_investigation_list);
         this.l_investigation_select_list = this.l_investigation_list.map(l_investigation_mast=>{
-         return {code : l_investigation_mast.investigation_level_id , name : l_investigation_mast.investigation_level1_name} 
+         return {code : l_investigation_mast.investigationLevelId , name : l_investigation_mast.investigationLevel1Name} 
         }) 
+        console.warn(this.l_investigation_select_list, ' this.l_investigation_select_list')
       },
       error: (err) => {
         console.error('Error fetching patients', err);
