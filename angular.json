@@ -33,6 +33,7 @@
               }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/rose-red.css",
               "node_modules/primeicons/primeicons.css",
               "src/styles.scss"
             ],
@@ -94,6 +95,7 @@
               }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/rose-red.css",
               "node_modules/primeicons/primeicons.css",
               "src/styles.scss"
             ],
@@ -102,5 +104,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "93525b0b-113e-4948-b47d-4e69f20843a1"
   }
 }

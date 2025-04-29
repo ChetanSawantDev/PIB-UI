@@ -1,0 +1,43 @@
+<mat-toolbar color="primary" class="top bar">
+    <span style="font-size: 24px;">Smart Scheduling</span>
+    <span class="spacer"></span>
+    <button mat-icon-button><mat-icon>notifications</mat-icon></button>
+    <button mat-icon-button><mat-icon>account_circle</mat-icon></button>
+  </mat-toolbar>
+  
+  <!-- Animated Light Background -->
+  <div class="background-overlay"></div>
+  
+  <!-- Dashboard Grid with Floating Cards -->
+  <div class="dashboard-grid">
+    <mat-card class="dashboard-card glass" routerLink="/reports">
+      <mat-icon>description</mat-icon>
+      <h3>Report Management</h3>
+      <p>Manage all generated reports</p>
+    </mat-card>
+  
+    <mat-card class="dashboard-card glass" routerLink="/schedules">
+      <mat-icon>schedule</mat-icon>
+      <h3>Schedule Management</h3>
+      <p>Set and track report schedules</p>
+    </mat-card>
+  
+    <mat-card class="dashboard-card glass" routerLink="/users">
+      <mat-icon>group</mat-icon>
+      <h3>User Management</h3>
+      <p>Manage users and roles</p>
+    </mat-card>
+  
+    <mat-card class="dashboard-card glass" routerLink="/settings">
+      <mat-icon>settings</mat-icon>
+      <h3>System Settings</h3>
+      <p>Configure app-wide settings</p>
+    </mat-card>
+  
+    <mat-card class="dashboard-card glass" routerLink="/logs">
+      <mat-icon>list_alt</mat-icon>
+      <h3>Logs</h3>
+      <p>View app logs and errors</p>
+    </mat-card>
+  </div>
+  
