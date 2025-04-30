@@ -1,0 +1,40 @@
+<mat-toolbar color="primary" class="top bar">
+    <span style="font-size: 24px; font-family: 'Montserrat', sans-serif !important; font-weight: bold;">Smart Scheduling</span>
+    <span class="spacer"></span>
+    <button mat-icon-button><mat-icon>notifications</mat-icon></button>
+    <button mat-icon-button><mat-icon>account_circle</mat-icon></button>
+  </mat-toolbar>
+  
+  <!-- Animated Light Background -->
+  <div class="background-overlay"></div>
+  
+  <!-- Dashboard Grid with Floating Cards -->
+  <div class="dashboard-grid">
+    
+    <mat-card class="dashboard-card glass !shadow-2xl" routerLink="/patient-list">
+      <div>
+      <mat-icon class="!m-auto">group</mat-icon>
+        <span class="card-header-title">Admin Management</span></div>
+      <p class="!mt-2 !ml-9">Manage all generated reports</p>
+    </mat-card>
+  
+    <mat-card class="dashboard-card glass shadow-2xl" routerLink="/users">
+      <div>
+        <mat-icon class="!m-auto">medication</mat-icon>
+        <span class="card-header-title">Clinical</span>
+      </div>
+      <p class="!mt-2 !ml-9">Manage users and roles</p>
+    </mat-card>
+    <mat-card class="dashboard-card glass !shadow-2xl" routerLink="/schedules">
+      <!-- <div><mat-icon class="!m-auto">schedule</mat-icon> -->
+        <div> <mat-icon class="!m-auto">description </mat-icon> 
+
+        <span class="card-header-title">Report Management</span></div>
+      <p class="!pointer-events-automt-2 !ml-9">Set and track report schedules</p>
+    </mat-card>
+  
+
+  
+
+  </div>
+  

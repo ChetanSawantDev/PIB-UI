@@ -5,6 +5,7 @@ import { TagModule } from 'primeng/tag';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../../configuration/remote/ApiClient.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-sign-in',
@@ -19,7 +20,9 @@ export class UserSignInComponent implements OnInit {
   services!: any[];
   public l_formData : any = {};
 
-  constructor(private _apiService : ApiService){
+  constructor(private _apiService : ApiService,
+    private router: Router
+  ){
 
   }
 
@@ -108,5 +111,6 @@ export class UserSignInComponent implements OnInit {
     this._apiService.gFN_PostApiCall(_url,userCredentials).subscribe(resp=>{
       console.warn(resp);
     });
+    this.router.navigate(['dashboard'])
   }
 }
