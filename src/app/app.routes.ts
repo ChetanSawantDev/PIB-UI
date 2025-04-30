@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { NotFoundComponent } from './common/components/Authentication/not-found/not-found.component';
 import { PatientListComponent } from './modules/Clinical Module/patient-list/patient-list.component';
 import { PatientInvestigationHistoryComponent } from './modules/Clinical Module/patient-investigation-history/patient-investigation-history.component';
+import { GenerateReportComponent } from './modules/Inventory Management/generate-report/generate-report.component';
 
 
 export const routes: Routes = [
@@ -20,6 +21,9 @@ export const routes: Routes = [
                     },
                     {
                         path: "investigationHistory", component: PatientInvestigationHistoryComponent,
+                    },
+                    {
+                        path : 'report',component : GenerateReportComponent
                     }
                 ]
             },

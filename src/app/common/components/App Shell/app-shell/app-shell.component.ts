@@ -51,6 +51,10 @@ export class AppShellComponent implements OnInit{
                 },
             ]
         },
+        {
+            label: 'Report',
+            routerLink : '/report'
+        }
     ]
 }
 
