@@ -1,12 +1,13 @@
 
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { ClinicalServiceService, InvestigationLevel1 } from '../services/clinical-service.service';
+import { ClinicalServiceService, InvestigationLevel1, InvestigationLevel1SelectList } from '../services/clinical-service.service';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { Dialog } from 'primeng/dialog';
 import { SelectModule } from 'primeng/select';
 import { FormsModule } from '@angular/forms';
+import { l_investigation_list, l_patient_master_list } from '../../../../assets/raw_data';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class PatientListComponent implements OnInit, AfterViewInit{
   public l_patient_master_list : PatientMaster[]=[]; 
   public l_investigation_modal = false;
   public l_selected_patient_in_modal : string = '';
-  public l_investigation_list : InvestigationLevel1[] = []; 
+  public l_investigation_list : InvestigationLevel1SelectList[] = []; 
   public l_investigation_select_list : InvestigationMasterSelectList[] = [];
   
   public l_investigation_selected ?: InvestigationMasterSelectList;
@@ -35,27 +36,35 @@ export class PatientListComponent implements OnInit, AfterViewInit{
   }
 
   ngAfterViewInit(): void {
-    this.l_clinicalServiceService.getAllPatients().subscribe({
-      next: (data) => {
-        this.l_patient_master_list = data;
-      },
-      error: (err) => {
-        console.error('Error fetching patients', err);
-      }
-    });
-    this.l_clinicalServiceService.getInvestigations().subscribe({
-      next: (data) => {
-        this.l_investigation_list = data;
-        console.warn(this.l_investigation_list);
-        this.l_investigation_select_list = this.l_investigation_list.map(l_investigation_mast=>{
-         return {code : l_investigation_mast.investigationLevelId , name : l_investigation_mast.investigationLevel1Name} 
-        }) 
-        console.warn(this.l_investigation_select_list, ' this.l_investigation_select_list')
-      },
-      error: (err) => {
-        console.error('Error fetching patients', err);
-      }
-    });
+    // this.l_clinicalServiceService.getAllPatients().subscribe({
+    //   next: (data) => {
+    //     this.l_patient_master_list = data;
+    //   },
+    //   error: (err) => {
+    //     console.error('Error fetching patients', err);
+    //   }
+    // });
+
+    this.l_patient_master_list = l_patient_master_list;
+
+    // this.l_clinicalServiceService.getInvestigations().subscribe({
+    //   next: (data) => {
+    //     this.l_investigation_list = data;
+    //     console.warn(this.l_investigation_list);
+    //     this.l_investigation_select_list = this.l_investigation_list.map(l_investigation_mast=>{
+    //      return {code : l_investigation_mast.investigationLevelId , name : l_investigation_mast.investigationLevel1Name} 
+    //     }) 
+    //     console.warn(this.l_investigation_select_list, ' this.l_investigation_select_list')
+    //   },
+    //   error: (err) => {
+    //     console.error('Error fetching patients', err);
+    //   }
+    // });
+
+    this.l_investigation_list = l_investigation_list;
+    this.l_investigation_select_list = this.l_investigation_list.map(l_investigation_mast=>{
+      return {code : l_investigation_mast.investigationLevelId , name : l_investigation_mast.investigationLevel1Name} 
+    }) 
   }
 
 
@@ -81,7 +90,7 @@ export class PatientListComponent implements OnInit, AfterViewInit{
 
 
 export class PatientMaster {
-  public patient_id?: string;
+  public patientId?: string;
   public mrn_no!: string;
   public first_name!: string;
   public middle_name?: string;

@@ -51,3 +51,11 @@ export interface InvestigationLevel1 {
   type: string;
   investigation_level2: InvestigationLevel2[]; // Nested list
 }
+
+export interface InvestigationLevel1SelectList {
+  investigationLevelId?: string;
+  investigationLevel1Name: string;
+  unit: string;
+  referenceRange: string;
+  type: string;
+}
