@@ -13,6 +13,7 @@
     align-items: center;
     height: 100%;
     padding: 0 0.9em;
+    background: linear-gradient(135deg, #e2edff, #ffffff);
 }
 
 ::ng-deep .p-carousel-prev, 
@@ -49,12 +50,12 @@
     font-size: 1.8em;
     font-weight: 500;
     padding: 0.4em 0em;
-    color: #D1BB9E;
+    color: #00458f;
 }
 
 .carousal-card-body .description{
     font-family: "Montserrat" sans-serif;
-    color: #A0937D;
+    color: #00458f;
 }
 
 
@@ -62,7 +63,7 @@
     font-family: "Montserrat", sans-serif !important;
     font-weight: 600;
     font-size: 2em;
-    color: #3f4948;
+    color: #00458f;
 }
 
 .signin-form-container{
@@ -71,7 +72,8 @@
     justify-content: center;
     align-items: center;
     padding: 0 8em;
-    background-color: #C8B6A6;
+    //background-color: #C8B6A6;  
+    background: #a2beff;
     height: 100%;
 }
 
@@ -84,7 +86,7 @@
     width: 100%;
     font-family: "Montserrat", sans-serif !important;
     font-size: 1em;
-    color: #723600 !important;
+    color: #00458f !important;
     font-weight: 500;
 }
 
@@ -109,14 +111,14 @@ input {
 ::ng-deep .remember-me-check > label {
     font-family: "Montserrat";
     font-size: 0.8em;
-    color: #723600 !important;
+    color: #00458f !important;
     font-weight: 500;
 }
 
 a{
     font-family: "Montserrat";
     font-size: 0.8em;
-    color: #723600 !important;
+    color: #00458f !important;
     font-weight: 500;
 }
 
@@ -126,7 +128,7 @@ a{
 }
 
 .login-btn button{
-    background-color: #723600;
+    background-color: #00458f;
     color: white;
     font-family: "Montserrat";
     border-radius: 10px;

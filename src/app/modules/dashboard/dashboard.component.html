@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" class="top bar">
-    <span style="font-size: 24px; font-family: 'Montserrat', sans-serif !important; font-weight: 500;">Smart Scheduling</span>
+    <span style="font-size: 24px; font-family: 'Montserrat', sans-serif !important; font-weight: bold;">Smart Scheduling</span>
     <span class="spacer"></span>
     <button mat-icon-button><mat-icon>notifications</mat-icon></button>
     <button mat-icon-button><mat-icon>account_circle</mat-icon></button>
@@ -10,39 +10,31 @@
   
   <!-- Dashboard Grid with Floating Cards -->
   <div class="dashboard-grid">
-    <mat-card class="dashboard-card glass !shadow-2xl" routerLink="/reports">
-      <div> <mat-icon class="!m-auto">description </mat-icon> <span class="card-header-title">Report Management</span></div>
+    
+    <mat-card class="dashboard-card glass !shadow-2xl" routerLink="/patient-list">
+      <div>
+      <mat-icon class="!m-auto">group</mat-icon>
+        <span class="card-header-title">Admin Management</span></div>
       <p class="!mt-2 !ml-9">Manage all generated reports</p>
-    </mat-card>
-  
-    <mat-card class="dashboard-card glass !shadow-2xl" routerLink="/schedules">
-      <div><mat-icon class="!m-auto">schedule</mat-icon><span class="card-header-title">Schedule Management</span></div>
-      <p class="!pointer-events-automt-2 !ml-9">Set and track report schedules</p>
     </mat-card>
   
     <mat-card class="dashboard-card glass shadow-2xl" routerLink="/users">
       <div>
-        <mat-icon class="!m-auto">group</mat-icon>
-        <span class="card-header-title">User Management</span>
+        <mat-icon class="!m-auto">medication</mat-icon>
+        <span class="card-header-title">Clinical</span>
       </div>
-      
       <p class="!mt-2 !ml-9">Manage users and roles</p>
     </mat-card>
-  
-    <mat-card class="dashboard-card glass shadow-2xl" routerLink="/settings">
-      <div>
-        <mat-icon class="!m-auto">settings</mat-icon>
-        <span class="card-header-title">System Settings</span>
-      </div>
-      <p class="!mt-2 !ml-9">Configure app-wide settings</p>
+    <mat-card class="dashboard-card glass !shadow-2xl" routerLink="/schedules">
+      <!-- <div><mat-icon class="!m-auto">schedule</mat-icon> -->
+        <div> <mat-icon class="!m-auto">description </mat-icon> 
+
+        <span class="card-header-title">Report Management</span></div>
+      <p class="!pointer-events-automt-2 !ml-9">Set and track report schedules</p>
     </mat-card>
   
-    <mat-card class="dashboard-card glass shadow-2xl" routerLink="/logs">
-      <div>
-        <mat-icon class="!m-auto">list_alt</mat-icon>
-        <span class="card-header-title">Logs</span>
-      </div>
-      <p class="!mt-2 !ml-9">View app logs and errors</p>
-    </mat-card>
+
+  
+
   </div>
   

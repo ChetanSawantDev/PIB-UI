@@ -1,120 +1,124 @@
 // Background animation
 
 
-  
-  // Top bar spacing
-  .spacer {
-    flex: 1 1 auto;
+
+// Top bar spacing
+.spacer {
+  flex: 1 1 auto;
+}
+
+// Grid layout
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 3fr);
+  gap: 30px;
+  padding: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+// Card style
+.dashboard-card {
+  height: 180px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+
+  mat-icon {
+    font-size: 25px;
+    color: #00458f;
+    margin-bottom: 10px;
   }
-  
-  // Grid layout
-  .dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 3fr);
-    gap: 30px;
-    padding: 40px;
-    position: relative;
-    z-index: 1;
-  }
-  
-  // Card style
-  .dashboard-card {
-    height: 180px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-radius: 20px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-  
-    mat-icon {
-      font-size: 25px;
-      color: #217ab4;
-      margin-bottom: 10px;
-    }
-  
-    h3 {
-      margin: 0;
-      font-size: 18px;
-      font-weight: 600;
-    }
-  
-    p {
-      margin-top: 5px;
-      font-size: 14px;
-      color: #444;
-    }
-  
-    &:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
-    }
-  }
-  
-  // Glass effect
-  .glass {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
-  
-  // Keyframes
-  @keyframes gradientMove {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-  body {
+
+  h3 {
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #f0f2f5;
+    font-size: 18px;
+    font-weight: 600;
   }
-    
 
-  .background-overlay {
-	position: absolute;
-	top: 64px;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: linear-gradient(-45deg, #308b94, #e1cee4, #fce4ec, #33454d);
-	background-size: 400% 400%;
-	animation: _ngcontent-ng-c1228721651_gradientMove 15s ease infinite;
-	z-index: -1;
+  p {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #444;
+  }
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  }
+}
+
+// Glass effect
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+// Keyframes
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f2f5;
 }
 
 
-  .mat-toolbar-row, .mat-toolbar-single-row {
-	padding: 8px 21px !important;
-    	background: linear-gradient(90deg, #1f7a7a, #4682b4);
-	color: white;
+.background-overlay {
+  position: absolute;
+  top: 64px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #e2edff, #a9caff);
+  background-size: 400% 400%;
+  animation: _ngcontent-ng-c1228721651_gradientMove 15s ease infinite;
+  z-index: -1;
 }
 
-mat-card{
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  padding: 8px 21px !important;
+  background: #a2beff;
+  color: #00458f;
+}
+
+mat-card {
   height: 140px !important;
 }
 
 
 
-mat-card div{
+mat-card div {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 
-.card-header-title{
+.card-header-title {
   font-family: 'Montserrat', sans-serif !important;
-    font-weight: 700 !important;
-    font-size: 1.1rem !important;
-    padding-left: .8rem !important;
+  font-weight: 700 !important;
+  font-size: 1.1rem !important;
+  padding-left: .8rem !important;
 }

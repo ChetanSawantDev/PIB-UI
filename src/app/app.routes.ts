@@ -10,28 +10,37 @@ import { GenerateReportComponent } from './modules/Inventory Management/generate
 
 
 export const routes: Routes = [
-    {
-        path: "",
-        component: AppComponent,
-        children: [
-            {
-                path: "", component: AppShellComponent,
-                children: [
-                    {
-                        path: "", component: PatientListComponent,
-                    },
-                    {
-                        path: "investigationHistory", component: PatientInvestigationHistoryComponent,
-                    },
-                    {
-                        path : 'report',component : GenerateReportComponent
-                    }
-                ]
-            },
-            { path: "login", component: UserSignInComponent },
+    // {
+    //     path: "",
+    //     component: AppComponent,
+    //     children: [
+    //         {
+    //             path: "", component: AppShellComponent,
+    //             children: [
+    //                 {
+    //                     path: "", component: PatientListComponent,
+    //                 },
+    //                 {
+    //                     path: "investigationHistory", component: PatientInvestigationHistoryComponent,
+    //                 },
+    //                 {
+    //                     path : 'report',component : GenerateReportComponent
+    //                 }
+    //             ]
+    //         },
+    //         { path: "login", component: UserSignInComponent },
 
-        ]
-    },
-    { path: 'dashboard', component: DashboardComponent },
+    //     ]
+    // },
+    { path: '', component: UserSignInComponent },
+    {
+        path: 'dashboard',
+        component: DashboardComponent,
+        children: [
+          { path: 'reports', component: PatientListComponent },
+         // { path: 'settings', component: SettingsComponent },
+          { path: '', redirectTo: 'reports', pathMatch: 'full' },
+        ],
+      },
     { path: '**', component: NotFoundComponent }
 ];
