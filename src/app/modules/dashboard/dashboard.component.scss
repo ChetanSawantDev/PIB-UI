@@ -32,10 +32,9 @@
 
   mat-icon {
     font-size: 25px;
-    color: #00458f;
+    color: #00458f !important;
     margin-bottom: 10px;
-  }
-
+  } 
   h3 {
     margin: 0;
     font-size: 18px;
@@ -121,4 +120,13 @@ mat-card div {
   font-weight: 700 !important;
   font-size: 1.1rem !important;
   padding-left: .8rem !important;
+}
+
+.icon-btn{
+  color: #00458f;
+}
+
+
+.mat-mdc-menu-content.ng-tns-c1923052698-0 {
+  background-color: #00458f !important
 }

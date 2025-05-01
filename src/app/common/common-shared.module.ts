@@ -1,37 +1,34 @@
 import { NgModule } from '@angular/core';
-import { CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
-
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    RouterLink,
+    MatMenuModule,
+    MatDividerModule,
   ],
-  declarations: [
-    ],
   exports: [
-    CommonModule,    
+    CommonModule,
+    RouterModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    RouterLink 
+    MatMenuModule,
+    MatDividerModule,
   ],
 })
-export class CommonSharedModule {
-
-  static forRoot() {
-    return {
-      ngModule: CommonSharedModule,
-    }
-  }
- }
+export class CommonSharedModule {}
