@@ -13,6 +13,7 @@
     font-weight: 600;
     padding: 0.2em 0;
     color: #00458f;
+    line-height: 1.0;
 }
 
 .not-found-desc{
@@ -45,13 +46,12 @@
     padding: 0.4em 1.8em;
     background-color: #4B70F5;
     border: 1px solid white;
-    background-color: #3f4948;
+    background-color: #00458f;
     font-family: "Open Sans", sans-serif;
     color: white;
 }
 
 .not-found-btn{
-    padding: 1em 0em;
     display: flex;
     justify-content: space-around;
     align-items: center;

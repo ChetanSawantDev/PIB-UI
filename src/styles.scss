@@ -39,10 +39,10 @@ label:hover{
   z-index: 1550 !important;
 }
 
-.cdk-overlay-connected-position-bounding-box{
-  top: 60px !important;
-  left: 87% !important;
-}
+// .cdk-overlay-connected-position-bounding-box{
+//   top: 60px !important;
+//   left: 87% !important;
+// }
 
 app-user-activity{
   width: 100%;
@@ -97,6 +97,9 @@ app-user-activity{
   --p-highlight-bg: #skyblue; /* Highlight background (optional) */
   --p-button-primary-background :  skyblue;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
