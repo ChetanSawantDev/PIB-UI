@@ -659,3 +659,18 @@ export let l_patient_master_list = [
         "type": "Panel"
     }
 ]
+
+
+//! Send This type of payload for report print
+let l_request_scheduled_report_payload={
+    "jobKey": "",
+    "jobName": "daily_report",
+    "cronExpression": "0 20 0 * * ?",
+    "parameters": {
+      "reportType": "Inventory",
+      "startDate": "2025-04-29",
+      "endDate": "2025-04-29",
+      "hospitalId": 111,
+      "includeSummary": true
+    }
+}

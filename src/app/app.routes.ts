@@ -41,6 +41,9 @@ export const routes: Routes = [
          // { path: 'settings', component: SettingsComponent },
           { path: '', redirectTo: 'reports', pathMatch: 'full' },
         ],
-      },
+    },
+    {
+      path: 'report', component: PatientInvestigationHistoryComponent,
+    },
     { path: '**', component: NotFoundComponent }
 ];
