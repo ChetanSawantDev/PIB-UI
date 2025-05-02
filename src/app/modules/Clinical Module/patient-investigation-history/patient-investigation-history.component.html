@@ -1,25 +1,34 @@
-<div class="flex w-full">
-    <div class="flex w-full">
-        <p-table [value]="patientInvestigationSummary" [paginator]="true" [rows]="10" [responsiveLayout]="'scroll'">
-            <ng-template pTemplate="header">
-                <tr>
-                    <th>Patient Name</th>
-                    <th>MRN</th>
-                    <th>Contact</th>
-                    <th>Test Name</th>
+<div class="w-12/12 rounded-2xl px-6" style="height:88%">
+    <div class="w-full mb-4 font-bold text-2xl" style="font-family: Montserrat;">
+        Patient Investigation List
+    </div>
+    <div class="w-full h-full shadow-xl">
+        <p-table [style.height] = "'100%'" [style.borderRadus] = "'12px'"    [scrollable]="true"
+        scrollHeight="590px" [value]="patient_investigation_history" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template #body let-patientMast>
+                <tr class="flex items-center rounded-2xl !shadow-xl mb-2" style="font-family: 'Montserrat' !important;">
+                    <td class="flex flex-col border-none ">
+                        <p class="!m-0" style="font-size: 1.2rem;">{{patientMast.patientName}} <span style="font-size: 0.8rem; font-weight: 500;">({{ patientMast.bloodGroup }})</span></p>
+                        <p class="!m-0" style="font-size: 0.60rem; font-weight: 600;"> ( {{patientMast.patientMrn}} ) {{patientMast.patientAge}}yrs {{patientMast.patientGender}} </p>
+                    </td>
+                    <td class="!border-none" style="font-size: 0.8rem;">{{ patientMast.investigationName }}</td>
+                    <td class="!border-none" style="font-size: 0.8rem;">{{ patientMast.investigationDate }}</td>
+                    <td class="!border-none" style="font-size: 0.8rem;">{{ patientMast.status }}</td>
+                    <td class="!border-none" style="font-size: 0.8rem;">
+                        <p class="!m-0">{{ patientMast.patientContact }}</p>
+                        <p class="!m-0">{{ patientMast.patientEmail }}</p>
+                    </td>
+                    <td class="!border-none">
+                        <button mat-button (click)="FillReportData(patientMast)"><mat-icon>edit</mat-icon></button>
+                    </td>
                 </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-summary>
-                <tr>
-                    <td>{{ summary.patientName }}</td>
-                    <td>{{ summary.mrn }}</td>
-                    <td>{{ summary.contact }}</td>
-                    <td>{{ summary.testName }}</td>
-                </tr>
+                
             </ng-template>
         </p-table>
     </div>
-    <div class="flex w-full">
-        
-    </div>
+    
 </div>
+
+<p-dialog header="Fill Report Data" [modal]="true" [(visible)]="l_investigation_modal_visible" [style]="{ width: '80vw' }">
+    <app-generate-report [patientInvestigationDetails]="l_patient_investigation_for_generate"></app-generate-report>
+</p-dialog>

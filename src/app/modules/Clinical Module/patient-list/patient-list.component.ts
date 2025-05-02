@@ -8,12 +8,14 @@ import { Dialog } from 'primeng/dialog';
 import { SelectModule } from 'primeng/select';
 import { FormsModule } from '@angular/forms';
 import { l_investigation_list, l_patient_master_list } from '../../../../assets/raw_data';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
   selector: 'app-patient-list',
   standalone: true,
-  imports: [TableModule,CommonModule, ButtonModule,Dialog, SelectModule, FormsModule],
+  imports: [TableModule,CommonModule, ButtonModule,Dialog, SelectModule, FormsModule, MatIconModule, MatButtonModule],
   templateUrl: './patient-list.component.html',
   styleUrl: './patient-list.component.scss'
 })
@@ -36,32 +38,32 @@ export class PatientListComponent implements OnInit, AfterViewInit{
   }
 
   ngAfterViewInit(): void {
-    // this.l_clinicalServiceService.getAllPatients().subscribe({
-    //   next: (data) => {
-    //     this.l_patient_master_list = data;
-    //   },
-    //   error: (err) => {
-    //     console.error('Error fetching patients', err);
-    //   }
-    // });
+    this.l_clinicalServiceService.getAllPatients().subscribe({
+      next: (data) => {
+        this.l_patient_master_list = data;
+      },
+      error: (err) => {
+        console.error('Error fetching patients', err);
+      }
+    });
 
-    this.l_patient_master_list = l_patient_master_list;
+    // this.l_patient_master_list = l_patient_master_list;
 
-    // this.l_clinicalServiceService.getInvestigations().subscribe({
-    //   next: (data) => {
-    //     this.l_investigation_list = data;
-    //     console.warn(this.l_investigation_list);
-    //     this.l_investigation_select_list = this.l_investigation_list.map(l_investigation_mast=>{
-    //      return {code : l_investigation_mast.investigationLevelId , name : l_investigation_mast.investigationLevel1Name} 
-    //     }) 
-    //     console.warn(this.l_investigation_select_list, ' this.l_investigation_select_list')
-    //   },
-    //   error: (err) => {
-    //     console.error('Error fetching patients', err);
-    //   }
-    // });
+    this.l_clinicalServiceService.getInvestigations().subscribe({
+      next: (data) => {
+        this.l_investigation_list = data;
+        console.warn(this.l_investigation_list);
+        this.l_investigation_select_list = this.l_investigation_list.map(l_investigation_mast=>{
+         return {code : l_investigation_mast.investigationLevelId , name : l_investigation_mast.investigationLevel1Name} 
+        }) 
+        console.warn(this.l_investigation_select_list, ' this.l_investigation_select_list')
+      },
+      error: (err) => {
+        console.error('Error fetching patients', err);
+      }
+    });
 
-    this.l_investigation_list = l_investigation_list;
+    // this.l_investigation_list = l_investigation_list;
     this.l_investigation_select_list = this.l_investigation_list.map(l_investigation_mast=>{
       return {code : l_investigation_mast.investigationLevelId , name : l_investigation_mast.investigationLevel1Name} 
     }) 

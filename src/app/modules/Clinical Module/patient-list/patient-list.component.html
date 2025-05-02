@@ -1,8 +1,8 @@
-<div class="w-10/12 m-auto rounded-2xl px-5 mt-8" style="height:88%">
-    <div class="w-full ">
-
+<div class="w-12/12 rounded-2xl px-6" style="height:88%">
+    <div class="w-full mb-4 font-bold text-2xl" style="font-family: Montserrat;">
+        Patient List
     </div>
-    <div class="w-full h-full">
+    <div class="w-full h-full shadow-xl">
         <p-table [style.height] = "'100%'" [style.borderRadus] = "'12px'"    [scrollable]="true"
         scrollHeight="590px" [value]="l_patient_master_list" [tableStyle]="{ 'min-width': '50rem' }">
             <ng-template #header>
@@ -29,7 +29,7 @@
                     <td>{{ patientMast.blood_group }}</td>
                     <td>{{ patientMast.mobile_no }}</td>
                     <td>
-                        <p-button [icon]="'pi pi-plus'" (onClick)="OpenInvestigationModel(patientMast.patient_id)"/>
+                        <button mat-button (click)="OpenInvestigationModel(patientMast.patient_id)"><mat-icon class="pt-1" style="height: 100%; width: 100%; font-size: 2rem;margin: auto;">add_box</mat-icon></button>
                     </td>
                 </tr>
             </ng-template>
@@ -42,6 +42,6 @@
         <p-select [options]="l_investigation_select_list" [style.width]="'100%'" [(ngModel)]="l_investigation_selected" appendTo="body" optionLabel="name" placeholder="Select an Investigation " class="w-full md:w-56" />
     </div>
     <div class="flex flex-row-reverse gap-4 mb-2">
-        <p-button icon="pi pi-plus" label="Add" (onClick)="AddInvestigationToPatient()"></p-button>
+        <button mat-button (click)="AddInvestigationToPatient()" style="font-size: 1.2rem; font-family: 'Montserrat' !important;"> Add <mat-icon class="pr-1" style="height: 100%; width: 100%; margin: auto; font-size: 1.7rem; padding-top: 6px;">add</mat-icon></button>
     </div>
 </p-dialog>

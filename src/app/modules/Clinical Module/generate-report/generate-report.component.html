@@ -1,18 +1,18 @@
 <div class="p-8 bg-white shadow-lg rounded-lg border border-gray-300" style="font-family: 'Montserrat', 'Montserrat', 'Lato', sans-serif;">
   <!-- Report Header -->
   <div class="text-center mb-8">
-    <h1 class="text-3xl font-bold uppercase" style="font-family: 'Montserrat', sans-serif;">Complete Blood Count (CBC) Test Report</h1>
-    <p class="text-sm text-gray-500" style="font-family: 'Lato', sans-serif;">Date: April 30, 2025</p>
+    <h1 class="text-3xl font-bold uppercase" style="font-family: 'Montserrat', sans-serif;">{{patientInvestigationDetails?.investigationName}}</h1>
+    <p class="text-sm text-gray-500" style="font-family: 'Lato', sans-serif;">{{patientInvestigationDetails?.investigationDate}}</p>
   </div>
 
   <!-- Patient Details Section -->
   <div class="mb-6">
     <h2 class="text-xl font-semibold border-b border-gray-300 pb-2 mb-4" style="font-family: 'Montserrat', sans-serif;">Patient Details</h2>
     <div class="grid grid-cols-2 gap-6 text-sm">
-      <p><span class="font-medium" style="font-family: 'Lato', sans-serif;">Name:</span> [Patient Name]</p>
-      <p><span class="font-medium" style="font-family: 'Lato', sans-serif;">Age:</span> [Patient Age]</p>
-      <p><span class="font-medium" style="font-family: 'Lato', sans-serif;">Gender:</span> [Patient Gender]</p>
-      <p><span class="font-medium" style="font-family: 'Lato', sans-serif;">Report ID:</span> [Report ID]</p>
+      <p><span class="font-medium" style="font-family: 'Lato', sans-serif;">Name:</span> {{patientInvestigationDetails?.patientName}}</p>
+      <p><span class="font-medium" style="font-family: 'Lato', sans-serif;">Age:</span> {{patientInvestigationDetails?.patientAge}}</p>
+      <p><span class="font-medium" style="font-family: 'Lato', sans-serif;">Gender:</span> {{patientInvestigationDetails?.patientAge}}</p>
+      <p><span class="font-medium" style="font-family: 'Lato', sans-serif;">Report ID:</span> </p>
     </div>
   </div>
 
@@ -61,8 +61,4 @@
     </div>
   </div>
 
-  <!-- Footer Section -->
-  <div class="text-center mt-8">
-    <p class="text-sm text-gray-500" style="font-family: 'Lato', sans-serif;">This is a computer-generated report and does not require a signature.</p>
-  </div>
 </div>

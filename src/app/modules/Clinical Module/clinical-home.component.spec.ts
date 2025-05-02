@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ClinicalHomeComponent } from './clinical-home.component';
 
-import { UserManagementComponent } from './user-management.component';
 
-describe('UserManagementComponent', () => {
-  let component: UserManagementComponent;
-  let fixture: ComponentFixture<UserManagementComponent>;
+describe('ClinicalHomeComponent', () => {
+  let component: ClinicalHomeComponent;
+  let fixture: ComponentFixture<ClinicalHomeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserManagementComponent]
+      imports: [ClinicalHomeComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(UserManagementComponent);
+    fixture = TestBed.createComponent(ClinicalHomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
