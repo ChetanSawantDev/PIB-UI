@@ -7,7 +7,7 @@
         scrollHeight="590px" [value]="patient_investigation_history" [tableStyle]="{ 'min-width': '50rem' }">
             <ng-template #body let-patientMast>
                 <tr class="flex items-center rounded-2xl !shadow-xl mb-2" style="font-family: 'Montserrat' !important;">
-                    <td class="flex flex-col border-none ">
+                    <td class="flex flex-col border-none flex-1">
                         <p class="!m-0" style="font-size: 1.2rem;">{{patientMast.patientName}} <span style="font-size: 0.8rem; font-weight: 500;">({{ patientMast.bloodGroup }})</span></p>
                         <p class="!m-0" style="font-size: 0.60rem; font-weight: 600;"> ( {{patientMast.patientMrn}} ) {{patientMast.patientAge}}yrs {{patientMast.patientGender}} </p>
                     </td>

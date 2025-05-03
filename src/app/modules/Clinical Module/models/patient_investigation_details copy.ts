@@ -277,6 +277,9 @@ export let PatientInvestigationDetails = [
   
     investigation!: InvestigationLevel1;
     patientInvestigationLevel2List!: PatientInvestigationLevel2[];
+    constructor(data: Partial<PatientInvestigationLevel1>) {
+      Object.assign(this, data);
+    }
   }
 
   export class PatientInvestigationLevel2 {
@@ -288,6 +291,10 @@ export let PatientInvestigationDetails = [
     investigationLevel2!: InvestigationLevel2;
     parentInvestigation1!: PatientInvestigationLevel1;
     patientInvestigationLevel3List!: PatientInvestigationLevel3[];
+    constructor(data: Partial<PatientInvestigationLevel2>) {
+      Object.assign(this, data);
+
+    }
   }
   
   export class PatientInvestigationLevel3 {
@@ -298,6 +305,9 @@ export let PatientInvestigationDetails = [
   
     investigationLevel3!: InvestigationLevel3;
     parentInvestigation2!: PatientInvestigationLevel2;
+    constructor(data: Partial<PatientInvestigationLevel3>) {
+      Object.assign(this, data);
+    }
   }
 
   export class InvestigationLevel1 {
@@ -308,6 +318,9 @@ export let PatientInvestigationDetails = [
     type!: string;
   
     investigation_level2!: InvestigationLevel2[];
+    constructor(data: Partial<InvestigationLevel1>) {
+      Object.assign(this, data);
+    }
   }
   export class InvestigationLevel2 {
     investigation_leve2_id!: string;
@@ -317,6 +330,9 @@ export let PatientInvestigationDetails = [
     type!: string;
   
     investigation_level3!: InvestigationLevel3[];
+    constructor(data: Partial<InvestigationLevel2>) {
+      Object.assign(this, data);
+    }
   }
     
   export class InvestigationLevel3 {
@@ -325,6 +341,9 @@ export let PatientInvestigationDetails = [
     unit!: string;
     referenceRange!: string;
     type!: string;
+    constructor(data: Partial<InvestigationLevel3>) {
+      Object.assign(this, data);
+    }
   }
 
   export class PatientMaster {
@@ -358,4 +377,7 @@ export let PatientInvestigationDetails = [
   export class PatientInvestigationHistoryModel{
     public patientInvestigationDetails ?:PatientInvestigationLevel1;
     public patientDetails ?: PatientMaster;
+
+    constructor(data: Partial<PatientInvestigationHistoryModel>) {}
+
   }

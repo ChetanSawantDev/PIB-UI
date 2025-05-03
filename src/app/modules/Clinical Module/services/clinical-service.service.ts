@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PatientMaster } from '../patient-list/patient-list.component';
+import { PatientInvestigationHistoryModel, PatientInvestigationLevel1 } from '../models/patient_investigation_details copy';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,16 @@ export class ClinicalServiceService {
   requestInvestigation(payload: any){
     return this.http.post<string>('http://localhost:8080/patientInvestigation/request',payload);
   }
+
+  getAllPatientInvestigations(){
+    return this.http.get<PatientInvestigationHistoryModel[]>('http://localhost:8080/patientInvestigation/investigationList');
+  }
+
+  getPatientInvestigationById(patientINvestigationId : string | any){
+    return this.http.get<PatientInvestigationLevel1>('http://localhost:8080/patientInvestigation/getPatientInvestigationById?patientInvestigationId='+patientINvestigationId);
+  }
 }
+
 
 
 export interface InvestigationLevel3 {

@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { DialogModule } from 'primeng/dialog';
 import { GenerateReportComponent } from "../generate-report/generate-report.component";
+import { ClinicalServiceService } from '../services/clinical-service.service';
 
 @Component({
   selector: 'app-patient-investigation-history',
@@ -15,33 +16,49 @@ import { GenerateReportComponent } from "../generate-report/generate-report.comp
   styleUrl: './patient-investigation-history.component.scss'
 })
 export class PatientInvestigationHistoryComponent implements AfterViewInit{
-  public l_patient_investigation_history = PatientInvestigationDetails;
+  public l_patient_investigation_history :PatientInvestigationHistoryModel[]= [];
   public patient_investigation_history: PatientInvestigationHistory[] =[];
   public l_investigation_modal_visible = false;
   public l_patient_investigation_for_generate : PatientInvestigationHistory = new PatientInvestigationHistory();
 
 
+  constructor(public l_clinicalServiceService : ClinicalServiceService) { }
+
+
   ngAfterViewInit(): void {
-    this.l_patient_investigation_history.forEach((item) => {
-      let l_patient_details = item?.patientDetails;
-      (Array.isArray(item.patientInvestigationDetails) ? item.patientInvestigationDetails : [item.patientInvestigationDetails])?.forEach((investigationDetail: PatientInvestigationLevel1) => {
-        this.patient_investigation_history.push(new PatientInvestigationHistory({
-          patientName:l_patient_details.first_name + ' '+ l_patient_details.middle_name+' '+ l_patient_details.last_name,
-          patientMrn:l_patient_details.mrn_no,
-          patientAge:l_patient_details.age_in_years,
-          investigationName : investigationDetail.investigation.investigationLevel1Name,
-          patientGender : l_patient_details.gender ? 'M' : 'F',
-          investigationDate : '25-Jan-2025',
-          status : investigationDetail.status,
-          patientContact : l_patient_details.mobile_no,
-          patientEmail : l_patient_details.email_id,
-          patientCity : l_patient_details.city,
-          comments : investigationDetail.comments,
-          bloodGroup : l_patient_details.blood_group,
-          patientInvestigationLevel1Id : investigationDetail.patientInvestigationLevel1Id,
-        }));
-      });
-    });
+    
+    this.l_clinicalServiceService.getAllPatientInvestigations().subscribe({
+      next: (data) => {
+        console.warn('Patient Investigation History', data);
+        this.l_patient_investigation_history = data;
+
+        this.l_patient_investigation_history.forEach((item) => {
+          let l_patient_details = item?.patientDetails;
+          (Array.isArray(item.patientInvestigationDetails) ? item.patientInvestigationDetails : [item.patientInvestigationDetails])?.forEach((investigationDetail: PatientInvestigationLevel1) => {
+            this.patient_investigation_history.push(new PatientInvestigationHistory({
+              patientName:l_patient_details?.first_name + ' '+ l_patient_details?.middle_name+' '+ l_patient_details?.last_name,
+              patientMrn:l_patient_details?.mrn_no,
+              patientAge:l_patient_details?.age_in_years,
+              investigationName : investigationDetail.investigation.investigationLevel1Name,
+              patientGender : l_patient_details?.gender ? 'M' : 'F',
+              investigationDate : '25-Jan-2025',
+              status : investigationDetail.status,
+              patientContact : l_patient_details?.mobile_no,
+              patientEmail : l_patient_details?.email_id,
+              patientCity : l_patient_details?.city,
+              comments : investigationDetail.comments,
+              bloodGroup : l_patient_details?.blood_group,
+              patientInvestigationLevel1Id : investigationDetail.patientInvestigationLevel1Id,
+            }));
+          });
+        });
+      },
+      error: (err) => {
+        console.error('Error fetching patients', err);
+      }
+    })
+
+    
   }
 
   FillReportData(patientInvestigationDet : PatientInvestigationHistory){
@@ -49,11 +66,7 @@ export class PatientInvestigationHistoryComponent implements AfterViewInit{
       this.l_patient_investigation_for_generate = new PatientInvestigationHistory({ ...patientInvestigationDet });
       this.l_investigation_modal_visible = true;
     });
-    console.warn('FillReportData', patientInvestigationDet);
-    // this.l_patient_investigation_for_generate = new PatientInvestigationHistory({ ...patientInvestigationDet });
-    // this.l_investigation_modal_visible = true;
   }
-
 }
 
 
