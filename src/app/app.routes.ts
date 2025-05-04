@@ -7,6 +7,8 @@ import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { GenerateReportComponent } from './modules/Clinical Module/generate-report/generate-report.component';
 import { ClinicalHomeComponent } from './modules/Clinical Module/clinical-home.component';
 import { AdminModuleComponent } from './modules/admin-module/admin-module.component';
+import { ReportSchedulesComponent } from './modules/Report-schedules/report-schedules.component';
+import { ReportLogsComponent } from './modules/Report-schedules/report-logs/report-logs.component';
 
 
 export const routes: Routes = [
@@ -51,6 +53,18 @@ export const routes: Routes = [
     { path: 'admin',
       component: AdminModuleComponent,
       children: []
+    },
+    {
+      path: 'schedules',
+      component: ReportSchedulesComponent,
+      children: [
+        {path : '', component : ReportLogsComponent},
+        //{path : 'reportlogs', component : ReportLogsComponent},
+      ],
+    },
+    {
+      path: 'generate-report/:patientInvestigationLevel1Id',
+      component: GenerateReportComponent,
     },
     { path: '**', component: NotFoundComponent }
 ];
