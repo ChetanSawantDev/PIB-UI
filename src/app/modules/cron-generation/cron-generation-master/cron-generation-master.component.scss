@@ -1,0 +1,14 @@
+
+::ng-deep label{
+    color: black !important;
+}
+
+::ng-deep button{
+    color: #27548A !important;
+    border: 1px solid #27548A !important;
+  }
+
+::ng-deep .mdc-button__label{
+    font-weight: 600 !important;
+    font-family: 'Montserrat' !important;
+}

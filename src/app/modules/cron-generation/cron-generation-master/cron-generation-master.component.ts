@@ -5,24 +5,26 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PibFormsModule } from '../../../common/components/Forms Module/pib-forms.module';
 import { ButtonModule } from 'primeng/button';
-import { CronPerSecondsComponent } from '../cron-per-seconds/cron-per-seconds.component';
 import { CronForMinutesComponent } from '../cron-for-minutes/cron-for-minutes.component';
 import { CronForHoursComponent } from '../cron-for-hours/cron-for-hours.component';
 import { CL_RespDaySelection, CronForDaysComponent } from '../cron-for-days/cron-for-days.component';
 import { CronForMonthsComponent } from '../cron-for-months/cron-for-months.component';
 import { CronForYearComponent } from '../cron-for-year/cron-for-year.component';
 import { MatButtonModule } from '@angular/material/button';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-cron-generation-master',
   standalone: true,
-  imports: [TabsModule,CheckboxModule,FormsModule,ReactiveFormsModule,CommonModule,PibFormsModule,ButtonModule, MatButtonModule,CronForDaysComponent,CronForHoursComponent,CronForMinutesComponent,CronForMonthsComponent,CronForYearComponent],
+  imports: [TabsModule,CheckboxModule,
+  ReactiveFormsModule,ReactiveFormsModule,CommonModule,FormsModule, InputTextModule,PibFormsModule,ButtonModule, MatButtonModule,CronForDaysComponent,CronForHoursComponent,CronForMinutesComponent,CronForMonthsComponent,CronForYearComponent],
   templateUrl: './cron-generation-master.component.html',
   styleUrl: './cron-generation-master.component.scss'
 })
 export class CronGenerationMasterComponent {
   
   public l_generatedCronExpression : string = ''; 
+  public l_report_name !: string; 
   public l_get_minutes : string = '';
   public l_get_hours : string = '';
   public l_get_days : CL_RespDaySelection = {l_days : '',l_days_of_week : false};

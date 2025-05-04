@@ -3,14 +3,14 @@
   <div class="mb-6">
     <div class="flex w-full">
       <div class="flex w-1/2 flex-col">
-        <p class="!m-0"><span class="font-medium" style="font-family: 'Lato', sans-serif;">Name: </span> {{patientInvestigationDetails?.patientName}}</p>
-        <p class="!m-0"><span class="font-medium" style="font-family: 'Lato', sans-serif;">Age:</span> {{patientInvestigationDetails?.patientAge}}</p>
-        <p class="!m-0"><span class="font-medium" style="font-family: 'Lato', sans-serif;">Gender:</span> {{patientInvestigationDetails?.patientGender}}</p>
+        <p class="!m-0"><span class="font-medium" style="font-family: 'Lato', sans-serif;">Name: </span> {{this?.l_patient_master?.first_name}} {{this?.l_patient_master?.middle_name}} {{this?.l_patient_master?.last_name}}</p>
+        <p class="!m-0"><span class="font-medium" style="font-family: 'Lato', sans-serif;">Age:</span> {{this?.l_patient_master?.age_in_years}}</p>
+        <p class="!m-0"><span class="font-medium" style="font-family: 'Lato', sans-serif;">Gender:</span> {{this?.l_patient_master?.gender}} </p>
       </div>
       <div class="flex w-1/2 flex-col">
-        <p class="!m-0"><span class="font-medium" style="font-family: 'Lato', sans-serif;">Blood Group:</span> {{patientInvestigationDetails?.bloodGroup}}</p>
-        <p class="!m-0"><span class="font-medium" style="font-family: 'Lato', sans-serif;">Requested Date:</span> {{patientInvestigationDetails?.investigationDate}}</p>
-        <p class="!m-0"><span class="font-medium" style="font-family: 'Lato', sans-serif;">Contact No:</span> {{patientInvestigationDetails?.patientContact}}</p>
+        <p class="!m-0"><span class="font-medium" style="font-family: 'Lato', sans-serif;">Blood Group:</span> {{this?.l_patient_master?.gender}}</p>
+        <p class="!m-0"><span class="font-medium" style="font-family: 'Lato', sans-serif;">Requested Date:</span> {{this?.l_patient_invsetigation_details_by_id?.entryDate}}</p>
+        <p class="!m-0"><span class="font-medium" style="font-family: 'Lato', sans-serif;">Contact No:</span> {{this?.l_patient_master?.gender}}</p>
       </div>
     </div>
   </div>

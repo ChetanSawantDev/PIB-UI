@@ -1,5 +1,10 @@
 <div class="card w-full mx-2 p-2 rounded-2xl bg-white">
     <p-tabs value="0" class="w-full">
+        <div class="flex flex-col">
+            <label for="reportname">Specify Report Name</label>
+            <input pInputText id="reportname" aria-describedby="report-name" [(ngModel)]="l_report_name" />
+            <small id="report-name">Enter a unique report name to see in logs.</small>
+        </div>
         <p-tablist class="flex w-full !justify-content-around">
             <p-tab value="0" class="!text-center !px-3 !py-2 !text-sm !font-mono !w-1/5 !flex ">Minutes</p-tab>
             <p-tab value="1" class="!text-center !px-3 !py-2 !text-sm !font-mono !w-1/5 !flex">Hours</p-tab>

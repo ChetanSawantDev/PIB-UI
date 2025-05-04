@@ -43,7 +43,7 @@ export const routes: Routes = [
       path: 'clinical',
       component: ClinicalHomeComponent,
       children: [
-        {path : '', component : PatientListComponent},
+        {path : 'patientList', component : PatientListComponent},
         {path : 'patient-investigation-history', component : PatientInvestigationHistoryComponent},
         {path : 'generate-report', component : GenerateReportComponent},
       ]
@@ -51,10 +51,6 @@ export const routes: Routes = [
     { path: 'admin',
       component: AdminModuleComponent,
       children: []
-    },
-    {
-      path: 'generate-report/:patientInvestigationLevel1Id',
-      component: GenerateReportComponent,
     },
     { path: '**', component: NotFoundComponent }
 ];

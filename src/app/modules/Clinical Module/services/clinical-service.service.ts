@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PatientMaster } from '../patient-list/patient-list.component';
 import { PatientInvestigationHistoryModel, PatientInvestigationLevel1 } from '../models/patient_investigation_details copy';
+import { PatientInvestigationHistoryById, scheduelReportPayload } from '../generate-report/generate-report.component';
 
 @Injectable({
   providedIn: 'root'
@@ -33,8 +34,14 @@ export class ClinicalServiceService {
   }
 
   getPatientInvestigationById(patientINvestigationId : string | any){
-    return this.http.get<PatientInvestigationLevel1>('http://localhost:8080/patientInvestigation/getPatientInvestigationById?patientInvestigationId='+patientINvestigationId);
+    return this.http.get<PatientInvestigationHistoryById>('http://localhost:8080/patientInvestigation/getPatientInvestigationById?patientInvestigationId='+patientINvestigationId);
   }
+
+
+  scheduleReportForPrint(scheduleReportPayloa : scheduelReportPayload){
+    return this.http.post<string>('http://localhost:9090/reportService/scheduleReport',scheduleReportPayloa);
+  }
+
 
   savePatientInvestigationDetailsById(){
 
