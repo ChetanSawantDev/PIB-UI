@@ -8,6 +8,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatTableModule } from '@angular/material/table';
+
+//prime ng added for grid in report//
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { PaginatorModule } from 'primeng/paginator'; 
 
 @NgModule({
   imports: [
@@ -19,6 +25,10 @@ import { MatDividerModule } from '@angular/material/divider';
     MatCardModule,
     MatMenuModule,
     MatDividerModule,
+    MatTableModule,
+    TableModule,
+    ButtonModule,
+    PaginatorModule
   ],
   exports: [
     CommonModule,
@@ -29,6 +39,10 @@ import { MatDividerModule } from '@angular/material/divider';
     MatCardModule,
     MatMenuModule,
     MatDividerModule,
+    MatTableModule,
+    TableModule,
+    ButtonModule,
+    PaginatorModule
   ],
 })
 export class CommonSharedModule {}

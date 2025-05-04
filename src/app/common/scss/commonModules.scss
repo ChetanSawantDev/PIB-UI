@@ -3,7 +3,10 @@
 .p-sidebar-content{
     background-color: #000000 !important;   
 }
-
+a.block.p-2.rounded:hover {
+    background-color: #00458f!important;
+    color: #a2beff!important;
+}
 .p-card{
     background-color: #2F4F4F;
     /* Simple shadow with a horizontal and vertical offset */
