@@ -22,10 +22,8 @@ export class NavigationService {
   async setBreadcrumbData(){
     let componentHref = this.router.url.slice(1);
     let componentHrefLst : string[] | string = componentHref.indexOf('/') !== -1 ? componentHref.split('/') : componentHref ;
-    console.warn(componentHrefLst);
     if(typeof componentHrefLst == 'string'){
       this.userNavigationHistory.next([this.getaComponentDataUsingRef(componentHrefLst)]);
-      console.warn(this.getaComponentDataUsingRef(componentHrefLst));
     }else{
 
     }

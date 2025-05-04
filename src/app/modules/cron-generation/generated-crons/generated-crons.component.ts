@@ -159,13 +159,12 @@ export class GeneratedCronsComponent {
 
   //? Call API To Change Status Of Job
   lFN_ChangeSatusOfJob(jobName:string, jobSatus : 'RESUME' | 'PAUSE' | 'DELETE'){
-    console.warn(jobName, ' jobName',jobSatus,  ' jobSatus' );
     this.messageService.add({ severity: 'success', summary: 'Success', detail:(jobName + "'s status updated !" ), closable : false });
   }
 
 
   save(){
-
+    
   }
 }
 

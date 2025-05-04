@@ -1,3 +1,19 @@
 ::ng-deep .p-datatable tbody tr:hover {
     background-color: #F5EEDD !important; /* Light cyan */
   }
+
+::ng-deep .p-dialog-footer{
+  padding: 4px 10px !important;
+  background-color: #dae8ff !important; /* Light cyan */
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+::ng-deep .p-dialog-header{
+  padding: 4px 10px !important;
+  background-color: #dae8ff !important; /* Light cyan */
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 1.2rem !important;
+}

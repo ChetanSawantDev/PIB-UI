@@ -273,7 +273,7 @@ export let PatientInvestigationDetails = [
     status!: string;
     enteredBy!: number | null;
     entryDate!:string;
-    comments!: string;
+    comments: string = '';
   
     investigation!: InvestigationLevel1;
     patientInvestigationLevel2List!: PatientInvestigationLevel2[];

@@ -8,7 +8,7 @@
             <p-checkBox binary="true" [(ngModel)]="l_month_to_choose.SPECIFIC_MONTH_OF_YEAR" (ngModelChange)="lFN_ChooseMonth('SPECIFIC_MONTH_OF_YEAR')"  inputId="second_2" />
             <label for="second_2" class="ml-2 !text-sm !text-stone-900">Specific month of the year (Choose one or Many)</label>
         </div>
-        <div *ngIf="l_month_to_choose.SPECIFIC_MONTH_OF_YEAR" class="w-full  grid grid-cols-6 gap-4">
+        <div *ngIf="l_month_to_choose.SPECIFIC_MONTH_OF_YEAR" class="w-full flex flex-wrap gap-4">
             <ng-container *ngFor="let l_second of l_months; let i = index">
                 <p-chip>
                   <p-checkbox [(ngModel)]="l_second.l_checked" binary="true" (ngModelChange)="lFN_ChooseMonth('SPECIFIC_MONTH_OF_YEAR')" inputId="secondCheckbox{{ i }}" class="text-sm small-checkbox"

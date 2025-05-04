@@ -1,3 +1,38 @@
 .p-dialog-header{
     font-family : 'Montserrat',  sans-serif!important;
 }
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+::ng-deep input{
+    border: 0px solid #000000 !important;
+    border-bottom: 1px solid #94a3b8 !important;
+    border-radius: 0px !important;
+    padding: 4px 6px !important;
+    font-size: 0.8rem !important;
+}
+
+::ng-deep p-toast{
+    translate: 83px !important;
+    right: -14% !important;
+    position: absolute !important;
+    top: -5% !important;
+}
+
+::ng-deep .p-toast-top-right{
+    width: 290px !important;
+}
+
+
+::ng-deep .p-toast-message-text{
+    gap: 0px !important;
+    font-family: 'Montserrat', sans-serif !important;
+}

@@ -1,7 +1,4 @@
-<div class="p-8 bg-white shadow-lg rounded-lg border border-gray-300" style="font-family: 'Montserrat', 'Montserrat', 'Lato', sans-serif;">
-  <!-- Report Header -->
- 
-
+<div class="p-8 my-2 bg-white shadow-lg rounded-lg border border-gray-300" style="font-family: 'Montserrat', 'Montserrat', 'Lato', sans-serif;">
   <!-- Patient Details Section -->
   <div class="mb-6">
     <div class="flex w-full">
@@ -18,51 +15,56 @@
     </div>
   </div>
 
-  <div class="text-center mb-8">
-    <h1 class="font-bold uppercase !m-0" style="font-family: 'Montserrat', sans-serif; font-size: 2rem;">{{patientInvestigationDetails?.investigationName}}</h1>
+  <div class="text-center mb-4">
+    <p class="uppercase !m-0" style="font-family: 'Nunito', sans-serif; font-size: 1.6rem;">{{patientInvestigationDetails?.investigationName}}</p>
   </div>
   <!-- Test Results Section -->
   <div class="mb-6">
-    <table class="w-full border-collapse border border-gray-300 text-sm">
+    <table *ngIf="l_patient_invsetigation_details_by_id?.patientInvestigationLevel2List?.length" class="w-full border-collapse border border-gray-300 text-sm">
       <thead>
         <tr class="bg-gray-100">
-          <th class="border border-gray-300 px-4 py-2 text-left" style="font-family: 'Lato', sans-serif;">Test</th>
+          <th class="border border-gray-300 px-4 py-2 text-left" style="font-family: 'Lato', sans-serif;">Investigation</th>
           <th class="border border-gray-300 px-4 py-2 text-left" style="font-family: 'Lato', sans-serif;">Result</th>
-          <th class="border border-gray-300 px-4 py-2 text-left" style="font-family: 'Lato', sans-serif;">Normal Range</th>
+          <th class="border border-gray-300 px-4 py-2 text-left" style="font-family: 'Lato', sans-serif;">Reference Value</th>
+          <th class="border border-gray-300 px-4 py-2 text-left" style="font-family: 'Lato', sans-serif;">Unit</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="border border-gray-300 px-4 py-2" style="font-family: 'Lato', sans-serif;">Hemoglobin</td>
-          <td class="border border-gray-300 px-4 py-2" style="font-family: 'Lato', sans-serif;"></td>
-          <td class="border border-gray-300 px-4 py-2" style="font-family: 'Lato', sans-serif;">13.5-17.5 g/dL</td>
-        </tr>
-        <tr>
-          <td class="border border-gray-300 px-4 py-2" style="font-family: 'Lato', sans-serif;">White Blood Cells</td>
-          <td class="border border-gray-300 px-4 py-2" style="font-family: 'Lato', sans-serif;">[Value]</td>
-          <td class="border border-gray-300 px-4 py-2" style="font-family: 'Lato', sans-serif;">4,500-11,000 cells/µL</td>
-        </tr>
-        <tr>
-          <td class="border border-gray-300 px-4 py-2" style="font-family: 'Lato', sans-serif;">Platelets</td>
-          <td class="border border-gray-300 px-4 py-2" style="font-family: 'Lato', sans-serif;">[Value]</td>
-          <td class="border border-gray-300 px-4 py-2" style="font-family: 'Lato', sans-serif;">150,000-450,000/µL</td>
-        </tr>
+        <ng-container *ngFor="let patientInvestigationLevel2 of l_patient_invsetigation_details_by_id?.patientInvestigationLevel2List">
+          <tr>
+            <td class="border border-gray-300 px-4 py-2" style="font-family: 'Lato', sans-serif;">{{patientInvestigationLevel2?.investigationLevel2?.investigation_level2_name}}</td>
+            <td class="border border-gray-300 px-4 py-2" style="font-family: 'Lato', sans-serif;">
+              <ng-container *ngIf="l_component_type === 'REPORT' && patientInvestigationLevel2?.investigationLevel2?.referenceRange">{{patientInvestigationLevel2.result}}</ng-container>
+              <ng-container *ngIf="l_component_type === 'GENERATE' && patientInvestigationLevel2?.investigationLevel2?.referenceRange"><input type="text" pInputText  maxlength="3" type="number" [(ngModel)]="patientInvestigationLevel2.result"></ng-container>
+            </td>
+            <td class="border border-gray-300 px-4 py-2" style="font-family: 'Lato', sans-serif;">{{patientInvestigationLevel2?.investigationLevel2?.referenceRange}}</td>
+            <td class="border border-gray-300 px-4 py-2" style="font-family: 'Lato', sans-serif;">{{patientInvestigationLevel2?.investigationLevel2?.unit}}</td>
+          </tr>
+          <ng-container *ngFor="let patientInvestigationLevel3 of patientInvestigationLevel2?.patientInvestigationLevel3List">
+            <tr>
+              <td class="border border-gray-300 px-4 py-2 pl-8" style="font-family: 'Lato', sans-serif;">{{patientInvestigationLevel3?.investigationLevel3?.investigation_level3_name}}</td>
+              <td class="border border-gray-300 px-4 py-2" style="font-family: 'Lato', sans-serif;">
+                <ng-container *ngIf="l_component_type === 'REPORT' && patientInvestigationLevel3?.investigationLevel3?.referenceRange">{{patientInvestigationLevel2.result}}</ng-container>
+                <ng-container *ngIf="l_component_type === 'GENERATE' && patientInvestigationLevel3?.investigationLevel3?.referenceRange"><input type="text" pInputText  maxlength="3" type="number" [(ngModel)]="patientInvestigationLevel3.result"></ng-container>
+              </td>
+              <td class="border border-gray-300 px-4 py-2" style="font-family: 'Lato', sans-serif;">{{patientInvestigationLevel3?.investigationLevel3?.referenceRange}}</td>
+              <td class="border border-gray-300 px-4 py-2" style="font-family: 'Lato', sans-serif;">{{patientInvestigationLevel3?.investigationLevel3?.unit}}</td>
+            </tr>
+          </ng-container>
+        </ng-container>
+
       </tbody>
     </table>
   </div>
 
   <!-- Doctor's Notes Section -->
   <div class="mb-6">
-    <h2 class="text-xl font-semibold border-b border-gray-300 pb-2 mb-4" style="font-family: 'Montserrat', sans-serif;">Doctor's Notes</h2>
-    <p class="text-sm" style="font-family: 'Lato', sans-serif;">[Doctor's observations and notes]</p>
+    <p class="!text-md font-semibold border-b border-gray-300 pb-2 mb-4" style="font-family: 'Montserrat', sans-serif;">Doctor's Notes</p>
+    <textarea class="w-full" rows="3" cols="30" pTextarea [(ngModel)]="l_doctor_comments"></textarea>
   </div>
-
-  <!-- Placeholder for Images -->
-  <div class="mb-6">
-    <h2 class="text-xl font-semibold border-b border-gray-300 pb-2 mb-4" style="font-family: 'Montserrat', sans-serif;">Attachments</h2>
-    <div class="flex justify-center items-center h-48 bg-gray-100 border border-gray-300 rounded-md">
-      <p class="text-gray-500" style="font-family: 'Lato', sans-serif;">[Image Placeholder]</p>
-    </div>
-  </div>
-
 </div>
+<p-toast />
+
+<p-dialog header="Select Time For Report" [modal]="true" [(visible)]="l_cron_modal_visible" [style]="{ width: '50vw' }">
+  <app-cron-generation-master (l_get_cron_expression)="l_generated_cron_expresion = $event; scheduleReportForReportPrint()"></app-cron-generation-master>
+</p-dialog> 

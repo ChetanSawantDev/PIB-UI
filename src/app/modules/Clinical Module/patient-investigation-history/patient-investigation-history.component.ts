@@ -1,17 +1,17 @@
-import { AfterViewInit, Component } from '@angular/core';
-import { PatientInvestigationDetails, PatientInvestigationHistoryModel, PatientInvestigationLevel1 } from '../models/patient_investigation_details copy';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { PatientInvestigationHistoryModel, PatientInvestigationLevel1 } from '../models/patient_investigation_details copy';
 import { TableModule } from 'primeng/table';
-import { PatientMaster } from '../patient-list/patient-list.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { DialogModule } from 'primeng/dialog';
 import { GenerateReportComponent } from "../generate-report/generate-report.component";
 import { ClinicalServiceService } from '../services/clinical-service.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-patient-investigation-history',
   standalone: true,
-  imports: [TableModule, MatIconModule, MatButtonModule, DialogModule, GenerateReportComponent],
+  imports: [TableModule, MatIconModule, MatButtonModule, DialogModule, GenerateReportComponent,CommonModule],
   templateUrl: './patient-investigation-history.component.html',
   styleUrl: './patient-investigation-history.component.scss'
 })
@@ -21,15 +21,45 @@ export class PatientInvestigationHistoryComponent implements AfterViewInit{
   public l_investigation_modal_visible = false;
   public l_patient_investigation_for_generate : PatientInvestigationHistory = new PatientInvestigationHistory();
 
+  public l_report_status : 'Draft' | 'Finalize' = 'Draft';
+
+  @ViewChild('report_generate_component') l_report_generate_component!: GenerateReportComponent;
 
   constructor(public l_clinicalServiceService : ClinicalServiceService) { }
 
 
-  ngAfterViewInit(): void {
+  async ngAfterViewInit(): Promise<void> {
+    this.l_report_status = 'Draft';
+    await this.getAllPatientInvestigationHistory();
     
+  }
+
+  FillReportData(patientInvestigationDet : PatientInvestigationHistory){
+    setTimeout(() => {
+      this.l_patient_investigation_for_generate = new PatientInvestigationHistory({ ...patientInvestigationDet });
+      this.l_investigation_modal_visible = true;
+    });
+  }
+
+  printLaterReport(){
+    this.l_report_generate_component.openCronSetupDialogue();
+  }
+  
+  async finalizeReport(){
+    await this.l_report_generate_component.savePatientInvestigationDetailsWithResults();
+    await this.getAllPatientInvestigationHistory();
+  }
+  printReport(){
+    
+  }
+
+  closeModalOnUpdate(){
+    this.l_investigation_modal_visible = false;
+  }
+
+  async getAllPatientInvestigationHistory(){
     this.l_clinicalServiceService.getAllPatientInvestigations().subscribe({
       next: (data) => {
-        console.warn('Patient Investigation History', data);
         this.l_patient_investigation_history = data;
 
         this.l_patient_investigation_history.forEach((item) => {
@@ -50,6 +80,7 @@ export class PatientInvestigationHistoryComponent implements AfterViewInit{
               bloodGroup : l_patient_details?.blood_group,
               patientInvestigationLevel1Id : investigationDetail.patientInvestigationLevel1Id,
             }));
+            
           });
         });
       },
@@ -57,15 +88,6 @@ export class PatientInvestigationHistoryComponent implements AfterViewInit{
         console.error('Error fetching patients', err);
       }
     })
-
-    
-  }
-
-  FillReportData(patientInvestigationDet : PatientInvestigationHistory){
-    setTimeout(() => {
-      this.l_patient_investigation_for_generate = new PatientInvestigationHistory({ ...patientInvestigationDet });
-      this.l_investigation_modal_visible = true;
-    });
   }
 }
 

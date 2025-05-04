@@ -29,6 +29,13 @@
     
 </div>
 
-<p-dialog header="Fill Report Data" [modal]="true" [(visible)]="l_investigation_modal_visible" [style]="{ width: '80vw' }">
-    <app-generate-report [patientInvestigationDetails]="l_patient_investigation_for_generate"></app-generate-report>
+<p-dialog header="Fill Report Data" [modal]="true" [(visible)]="l_investigation_modal_visible" [style]="{ width: '70vw' }">
+    <app-generate-report #report_generate_component class="my-2" 
+    (patientInvestigationResultsSaved)="closeModalOnUpdate()"
+    [patientInvestigationDetails]="l_patient_investigation_for_generate"></app-generate-report>
+    <ng-template pTemplate="footer">
+        <button style="color: #27548A !important;" mat-button label="Cancel" (click)="finalizeReport()"></button>
+        <button style="color: #27548A !important;" mat-button label="Confirm" (click)="printReport()">Print</button>
+        <button style="color: #27548A !important;" mat-button label="Confirm" (click)="printLaterReport()">Print Later</button>
+    </ng-template>
 </p-dialog>

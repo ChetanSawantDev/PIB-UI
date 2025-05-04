@@ -52,11 +52,9 @@ export class PatientListComponent implements OnInit, AfterViewInit{
     this.l_clinicalServiceService.getInvestigations().subscribe({
       next: (data) => {
         this.l_investigation_list = data;
-        console.warn(this.l_investigation_list);
         this.l_investigation_select_list = this.l_investigation_list.map(l_investigation_mast=>{
          return {code : l_investigation_mast.investigationLevelId , name : l_investigation_mast.investigationLevel1Name} 
         }) 
-        console.warn(this.l_investigation_select_list, ' this.l_investigation_select_list')
       },
       error: (err) => {
         console.error('Error fetching patients', err);
@@ -73,7 +71,7 @@ export class PatientListComponent implements OnInit, AfterViewInit{
   AddInvestigationToPatient(){
     this.l_clinicalServiceService.requestInvestigation({patientId : this.l_selected_patient_in_modal, investigationLevel1Id : this.l_investigation_selected?.code}).subscribe({
       next: (data) => {
-        console.warn(data);
+        console.log(data);
       },
       error: (err) => {
         console.error('Error fetching patients', err);

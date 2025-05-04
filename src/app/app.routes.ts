@@ -52,5 +52,9 @@ export const routes: Routes = [
       component: AdminModuleComponent,
       children: []
     },
+    {
+      path: 'generate-report/:patientInvestigationLevel1Id',
+      component: GenerateReportComponent,
+    },
     { path: '**', component: NotFoundComponent }
 ];

@@ -109,7 +109,7 @@ export class UserSignInComponent implements OnInit {
       "password" : "Arthur@8149"
   }
     this._apiService.gFN_PostApiCall(_url,userCredentials).subscribe(resp=>{
-      console.warn(resp);
+      console.log(resp);
     });
     this.router.navigate(['dashboard'])
   }

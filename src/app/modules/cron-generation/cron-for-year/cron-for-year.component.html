@@ -9,7 +9,7 @@
             <p-checkBox binary="true" [(ngModel)]="l_year_to_choose.SPECIFIC_YEAR" (ngModelChange)="lFN_ChooseYear('SPECIFIC_YEAR')" inputId="second_3" />
             <label for="second_3" class="ml-2 !text-sm !text-stone-900">Specific year (Choose one or Many)</label>
         </div>
-        <div *ngIf="l_year_to_choose.SPECIFIC_YEAR" class="w-full  grid grid-cols-10 gap-4">
+        <div *ngIf="l_year_to_choose.SPECIFIC_YEAR" class="w-full flex flex-wrap gap-4">
             <ng-container *ngFor="let l_second of l_years; let i = index">
                 <p-chip>
                   <p-checkbox [(ngModel)]="l_second.l_checked" binary="true" inputId="secondCheckbox{{ i }}" (ngModelChange)="lFN_ChooseYear('SPECIFIC_YEAR')"

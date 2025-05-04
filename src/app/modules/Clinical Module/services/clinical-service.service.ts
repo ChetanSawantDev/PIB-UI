@@ -24,6 +24,9 @@ export class ClinicalServiceService {
   requestInvestigation(payload: any){
     return this.http.post<string>('http://localhost:8080/patientInvestigation/request',payload);
   }
+  updatePatientInvestigation(payload: any){
+    return this.http.post<string>('http://localhost:8080/patientInvestigation/updatePatientInvestigation',payload,{ responseType: 'text' as 'json' }   );
+  }
 
   getAllPatientInvestigations(){
     return this.http.get<PatientInvestigationHistoryModel[]>('http://localhost:8080/patientInvestigation/investigationList');
@@ -31,6 +34,10 @@ export class ClinicalServiceService {
 
   getPatientInvestigationById(patientINvestigationId : string | any){
     return this.http.get<PatientInvestigationLevel1>('http://localhost:8080/patientInvestigation/getPatientInvestigationById?patientInvestigationId='+patientINvestigationId);
+  }
+
+  savePatientInvestigationDetailsById(){
+
   }
 }
 
