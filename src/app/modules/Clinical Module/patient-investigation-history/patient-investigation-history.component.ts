@@ -7,6 +7,8 @@ import { DialogModule } from 'primeng/dialog';
 import { GenerateReportComponent } from "../generate-report/generate-report.component";
 import { ClinicalServiceService } from '../services/clinical-service.service';
 import { CommonModule } from '@angular/common';
+import { MessageService } from 'primeng/api';
+import { SnackBarService } from '../services/snackbar.service';
 
 @Component({
   selector: 'app-patient-investigation-history',
@@ -25,7 +27,7 @@ export class PatientInvestigationHistoryComponent implements AfterViewInit{
 
   @ViewChild('report_generate_component') l_report_generate_component!: GenerateReportComponent;
 
-  constructor(public l_clinicalServiceService : ClinicalServiceService) { }
+  constructor(public l_clinicalServiceService : ClinicalServiceService,private messageService: MessageService,private snackBarService: SnackBarService) { }
 
 
   async ngAfterViewInit(): Promise<void> {
@@ -47,7 +49,7 @@ export class PatientInvestigationHistoryComponent implements AfterViewInit{
   
   async finalizeReport(){
     await this.l_report_generate_component.savePatientInvestigationDetailsWithResults();
-    await this.getAllPatientInvestigationHistory();
+    setTimeout(async() => {await this.getAllPatientInvestigationHistory(),700})
   }
   printReport(){
     
@@ -58,6 +60,7 @@ export class PatientInvestigationHistoryComponent implements AfterViewInit{
   }
 
   async getAllPatientInvestigationHistory(){
+    console.log('Fetching patients...');
     this.l_clinicalServiceService.getAllPatientInvestigations().subscribe({
       next: (data) => {
         this.l_patient_investigation_history = data;
@@ -88,6 +91,14 @@ export class PatientInvestigationHistoryComponent implements AfterViewInit{
         console.error('Error fetching patients', err);
       }
     })
+  }
+
+  lFN_ScheduleSaved(isScheduled : boolean){
+    if(isScheduled){
+      this.snackBarService.showSuccess('Report Scheduled Successfully!');
+      this.l_investigation_modal_visible = false;
+    }
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Report Scheduled Successfully !' });
   }
 }
 

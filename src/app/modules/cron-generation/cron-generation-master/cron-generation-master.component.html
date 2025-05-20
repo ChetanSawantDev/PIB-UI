@@ -29,10 +29,15 @@
                <app-cron-for-year (l_get_year_selected)="l_get_years = $event;  lFN_PrepareCronExpressoion();"></app-cron-for-year>
             </p-tabpanel>
         </p-tabpanels>
-        <p class="text-center !my-2 text-xl w-auto rounded-lg m-auto"
-            style="font-family: 'Montserrat';"    
-        >{{l_cron_description}}</p>
-        <div class="flex flex-row-reverse">
+        <div class="flex w-full">
+            <p class="text-center !my-2 text-xl rounded-xl !m-auto bg-sky-200" 
+            style="font-family: 'Montserrat'; display: flex;
+                align-items: center;
+                justify-content: center;padding: 4px 10px;"    
+             ><mat-icon class="mr-2">schedule</mat-icon> {{l_cron_description}}</p>
+             <p *ngIf="!is_time_invalid">{{l_cron_warning_msg}}</p>
+        </div>
+        <div [ngClass]=" l_report_name  && !is_time_invalid? 'block' : 'hidden'" class="flex flex-row-reverse" >
             <button (click)="setCronExpression()" mat-button>Schedule</button>
         </div>
     </p-tabs>

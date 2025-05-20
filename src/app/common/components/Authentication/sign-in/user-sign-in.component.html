@@ -30,11 +30,11 @@
             <p>Login</p>
             <div class="form-fields">
                 <label for="username">Username</label>
-                <input type="text" pInputText oninput="l_formData.l_password = $event" />
+                <input type="text" pInputText [(ngModel)]="l_formData.username"  />
             </div>
             <div class="form-fields">
                 <label for="password">Password</label>
-                <input type="password" pInputText oninput="l_formData.l_password = $event" />
+                <input type="password" pInputText [(ngModel)]="l_formData.password" />
             </div>
             <div class="form-bottom">
                 <div >

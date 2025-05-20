@@ -1,6 +1,6 @@
 /* Custom status badge styles */
 .badge-dispatched {
-  background-color: #4caf50;
+  background-color: #14aa19;
   color: white;
   padding: 4px 10px;
   border-radius: 12px;
@@ -33,4 +33,28 @@
   border-radius: 12px;
   font-size: 12px;
   text-transform: uppercase;
+}
+
+.badge-completed {
+  background-color: #535fd2;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+
+::ng-deep th{
+  font-family: 'Montserrat' !important;
+font-size: 0.9rem !important;
+}
+
+::ng-deep td{
+  font-family: 'Lato' !important;
+  font-size: 0.8rem !important;
+}
+
+td{
+  padding: 6px 10px !important;
 }

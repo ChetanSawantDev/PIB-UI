@@ -6,6 +6,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../../configuration/remote/ApiClient.service';
 import { Router } from '@angular/router';
+import { ClinicalServiceService, loginCredentials } from '../../../../modules/Clinical Module/services/clinical-service.service';
+import { SnackBarService } from '../../../../modules/Clinical Module/services/snackbar.service';
 
 @Component({
   selector: 'app-user-sign-in',
@@ -18,10 +20,12 @@ export class UserSignInComponent implements OnInit {
   
   responsiveOptions: any[] | undefined;
   services!: any[];
-  public l_formData : any = {};
+  public l_formData : loginCredentials = {password : '',username : ''};
 
   constructor(private _apiService : ApiService,
-    private router: Router
+    private router: Router,
+    private l_cliniclaService : ClinicalServiceService,
+    private snackBarService: SnackBarService
   ){
 
   }
@@ -96,21 +100,28 @@ export class UserSignInComponent implements OnInit {
         description: 'Product DescriptionManage your administrative tasks efficiently with our suite of tools designed for seamless office management.',
         imagePath: 'assets/images/common/home-carousal/admin.png',
       },
-      
     ]
   }
 
 
-
   async lFN_Login(){
     let _url =  `http://localhost:8181/auth/authenticateUser/login`;
-    let userCredentials = {
-      "username" : 'chetan',
-      "password" : "Arthur@8149"
-  }
-    this._apiService.gFN_PostApiCall(_url,userCredentials).subscribe(resp=>{
-      console.log(resp);
-    });
-    this.router.navigate(['dashboard'])
+    let userCredentials : loginCredentials = {
+      username : this.l_formData.username,
+      password : this.l_formData.password
+    }
+    if(this.l_formData.password && this.l_formData.username){
+      await this.l_cliniclaService.authenticateUser(userCredentials).subscribe(resp=>{
+        if(resp){
+          this.router.navigate(['dashboard'])
+          localStorage.setItem('token',resp?.accessToken);
+          this.snackBarService.showSuccess('Logged in Successfully!');
+        }else{
+          this.snackBarService.showError('Bad Credentials !');
+        }
+      });
+    }else{
+      this.snackBarService.showError('Enter Credentials first');
+    }
   }
 }

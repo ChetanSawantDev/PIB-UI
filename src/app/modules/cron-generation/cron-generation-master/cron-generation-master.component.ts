@@ -12,11 +12,14 @@ import { CronForMonthsComponent } from '../cron-for-months/cron-for-months.compo
 import { CronForYearComponent } from '../cron-for-year/cron-for-year.component';
 import { MatButtonModule } from '@angular/material/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { MatIconModule } from '@angular/material/icon';
+import { ClinicalServiceService } from '../../Clinical Module/services/clinical-service.service';
+import { AdminSettings } from '../../admin-module/admin-settings/admin-settings.component';
 
 @Component({
   selector: 'app-cron-generation-master',
   standalone: true,
-  imports: [TabsModule,CheckboxModule,
+  imports: [TabsModule,CheckboxModule,MatIconModule,
   ReactiveFormsModule,ReactiveFormsModule,CommonModule,FormsModule, InputTextModule,PibFormsModule,ButtonModule, MatButtonModule,CronForDaysComponent,CronForHoursComponent,CronForMinutesComponent,CronForMonthsComponent,CronForYearComponent],
   templateUrl: './cron-generation-master.component.html',
   styleUrl: './cron-generation-master.component.scss'
@@ -30,10 +33,23 @@ export class CronGenerationMasterComponent {
   public l_get_days : CL_RespDaySelection = {l_days : '',l_days_of_week : false};
   public l_get_months : string = '';
   public l_get_years : string = '';
+  public l_cron_expression : string = '';
   public l_cron_description : string = '';
   @Output() public l_get_cron_expression : EventEmitter<string> = new EventEmitter<string>();
-  constructor() {
-    
+  @Output() public l_get_report_name : EventEmitter<string> = new EventEmitter<string>();
+
+  public l_adminSettings : AdminSettings = new AdminSettings();
+
+  public is_time_invalid = false;
+  public l_cron_warning_msg : string ='';
+
+  constructor(private l_clinicalService: ClinicalServiceService) {
+    l_clinicalService.getAllAdminSettings().subscribe((response) => {
+      if (response && response.length > 0) {
+          this.l_adminSettings = response[0];
+      }
+    });
+
   }
 
   lFN_PrepareCronExpressoion(){
@@ -84,13 +100,22 @@ export class CronGenerationMasterComponent {
       l_cron_expression_array[6] = l_current_year.toString();
     }
 
-    let l_expression = l_cron_expression_array.join(' ');
+    this.l_cron_expression = l_cron_expression_array.join(' ');
 
-    this.l_cron_description = this.parseCronExpression(l_expression); 
+
+
+
+
+
+
+    this.l_cron_description = this.parseCronExpression(this.l_cron_expression); 
   }
 
   setCronExpression(){
-    this.l_get_cron_expression.emit(this.l_cron_description);
+    this.l_get_report_name.emit(this.l_report_name);
+    this.l_get_cron_expression.emit(this.l_cron_expression);
+    this.l_cron_expression = '';  
+    this.l_report_name = '';
   }
 
 
@@ -143,8 +168,48 @@ export class CronGenerationMasterComponent {
         description += `every year`;
     }
 
+
+
+    let l_warning_time_from = this.l_adminSettings.warningScheduleFrom;
+    let l_warning_time_to = this.l_adminSettings.warningScheduleTo;
+    let l_valid_time_from = this.l_adminSettings.validScheduleFrom;
+    let l_valid_time_to_form = this.l_adminSettings.validScheduleTo;
+    let l_invalid_time_from = this.l_adminSettings.invalidScheduleFrom;
+    let l_invalid_time_to = this.l_adminSettings.invalidScheduleTo;
+
+
+    let l_warning_time_from_time = new Date(l_warning_time_from).getHours() * 3600000 + new Date(l_warning_time_from).getMinutes() * 60000 + new Date(l_warning_time_from).getSeconds() * 1000;
+    let l_warning_time_to_time = new Date(l_warning_time_to).getHours() * 3600000 + new Date(l_warning_time_to).getMinutes() * 60000 + new Date(l_warning_time_to).getSeconds() * 1000; 
+    let l_invalid_time_from_time = new Date(l_invalid_time_from).getHours() * 3600000 + new Date(l_invalid_time_from).getMinutes() * 60000 + new Date(l_invalid_time_from).getSeconds() * 1000;
+    let l_invalid_time_to_time = new Date(l_invalid_time_to).getHours() * 3600000 + new Date(l_invalid_time_to).getMinutes() * 60000 + new Date(l_invalid_time_to).getSeconds() * 1000;
+
+    let l_cron_time = this.cronToMillis(cronExpression);
+
+    if(l_warning_time_from_time <= l_cron_time && l_cron_time <= l_warning_time_to_time){
+      this.l_cron_warning_msg = `You are not allowed to schedule a report in this time slot`;
+    }else if(l_invalid_time_from_time <= l_cron_time && l_cron_time <= l_invalid_time_to_time){
+      this.is_time_invalid = true;
+      return description += `\n (You are trying to schedule a report in Invalid Time)`;
+    }else{
+      this.is_time_invalid = false;
+    }
     return description.trim();
   }
+
+
+  cronToMillis(cronExpr: string): number  {
+    const parts = cronExpr.trim().split(/\s+/);
+
+  
+    const [secondStr, minuteStr, hourStr] = parts;
+  
+    const seconds = parseInt(secondStr, 10);
+    const minutes = parseInt(minuteStr, 10);
+    const hours = parseInt(hourStr, 10);
+  
+    return hours * 3600000 + minutes * 60000 + seconds * 1000;
+  }
+  
 } 
 
 

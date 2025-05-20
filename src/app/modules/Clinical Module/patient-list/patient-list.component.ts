@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { l_investigation_list, l_patient_master_list } from '../../../../assets/raw_data';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { SnackBarService } from '../services/snackbar.service';
 
 
 @Component({
@@ -29,7 +30,9 @@ export class PatientListComponent implements OnInit, AfterViewInit{
   public l_investigation_selected ?: InvestigationMasterSelectList;
 
   
-  constructor(public l_clinicalServiceService : ClinicalServiceService){
+  constructor(public l_clinicalServiceService : ClinicalServiceService,
+    private snackBarService: SnackBarService
+  ){
 
   }
 
@@ -71,6 +74,9 @@ export class PatientListComponent implements OnInit, AfterViewInit{
   AddInvestigationToPatient(){
     this.l_clinicalServiceService.requestInvestigation({patientId : this.l_selected_patient_in_modal, investigationLevel1Id : this.l_investigation_selected?.code}).subscribe({
       next: (data) => {
+        if(data){
+          this.snackBarService.showSuccess('Investigation Assigned Successfully!');
+        }
         console.log(data);
       },
       error: (err) => {

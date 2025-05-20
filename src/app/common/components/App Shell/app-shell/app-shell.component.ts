@@ -12,13 +12,14 @@ import { PatientListComponent } from "../../../../modules/Clinical Module/patien
 import { MenuItem } from 'primeng/api';
 import { PanelMenu } from 'primeng/panelmenu';
 import { RouterOutlet } from '@angular/router';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-app-shell',
   templateUrl: './app-shell.component.html',
   styleUrl: './app-shell.component.scss',
   standalone : true,
-  imports: [AppBarComponent,PanelMenu, CronGenerationMasterComponent, PibFormsModule,RouterOutlet, TabsModule, ButtonModule, CheckboxModule, ReactiveFormsModule, CommonModule, FormsModule, CronGenerationMasterComponent, GeneratedCronsComponent, PatientListComponent]
+  imports: [AppBarComponent,PanelMenu,ToastModule, PibFormsModule,RouterOutlet, TabsModule, ButtonModule, CheckboxModule, ReactiveFormsModule, CommonModule, FormsModule, CronGenerationMasterComponent, GeneratedCronsComponent, PatientListComponent]
 })
 export class AppShellComponent implements OnInit{
   public items?: MenuItem[];

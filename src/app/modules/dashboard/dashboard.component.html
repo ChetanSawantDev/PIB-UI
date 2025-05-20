@@ -9,7 +9,7 @@
 
 <mat-menu class="icon-tab" #animals="matMenu" style="background-color: #a2beff !important;">
   <button class="icon-btn" mat-menu-item><mat-icon>person</mat-icon>User Details</button>
-  <button  class="icon-btn" mat-menu-item><mat-icon>exit_to_app</mat-icon>Log out</button>
+  <button  class="icon-btn" mat-menu-item><a routerLink="/"><mat-icon>exit_to_app</mat-icon>Log out</a></button>
 </mat-menu>
 
   <!-- Animated Light Background -->
@@ -18,7 +18,7 @@
   <!-- Dashboard Grid with Floating Cards -->
   <div class="dashboard-grid">
     
-    <mat-card class="dashboard-card glass !shadow-2xl" routerLink="/patient-list">
+    <mat-card class="dashboard-card glass !shadow-2xl" routerLink="/admin/settings">
       <div>
       <mat-icon class="!m-auto">group</mat-icon>
         <span class="card-header-title">Admin Management</span></div>
@@ -32,7 +32,7 @@
       </div>
       <p class="!mt-2 !ml-9">Manage users and roles</p>
     </mat-card>
-    <mat-card class="dashboard-card glass !shadow-2xl" routerLink="/schedules">
+    <mat-card class="dashboard-card glass !shadow-2xl" routerLink="/reportlogs">
       <!-- <div><mat-icon class="!m-auto">schedule</mat-icon> -->
         <div> <mat-icon class="!m-auto">description </mat-icon> 
 

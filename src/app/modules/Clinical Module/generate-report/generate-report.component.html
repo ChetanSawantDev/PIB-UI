@@ -1,16 +1,16 @@
-<div class="p-8 my-2 bg-white shadow-lg rounded-lg border border-gray-300" style="font-family: 'Montserrat', 'Montserrat', 'Lato', sans-serif;">
+<div class="p-8 bg-white shadow-lg rounded-lg border border-gray-300" style="font-family: 'Montserrat', 'Montserrat', 'Lato', sans-serif;">
   <!-- Patient Details Section -->
   <div class="mb-6">
     <div class="flex w-full">
       <div class="flex w-1/2 flex-col">
         <p class="!m-0"><span class="font-medium" style="font-family: 'Lato', sans-serif;">Name: </span> {{this?.l_patient_master?.first_name}} {{this?.l_patient_master?.middle_name}} {{this?.l_patient_master?.last_name}}</p>
         <p class="!m-0"><span class="font-medium" style="font-family: 'Lato', sans-serif;">Age:</span> {{this?.l_patient_master?.age_in_years}}</p>
-        <p class="!m-0"><span class="font-medium" style="font-family: 'Lato', sans-serif;">Gender:</span> {{this?.l_patient_master?.gender}} </p>
+        <p class="!m-0"><span class="font-medium" style="font-family: 'Lato', sans-serif;">Gender:</span> M </p>
       </div>
       <div class="flex w-1/2 flex-col">
-        <p class="!m-0"><span class="font-medium" style="font-family: 'Lato', sans-serif;">Blood Group:</span> {{this?.l_patient_master?.gender}}</p>
+        <p class="!m-0"><span class="font-medium" style="font-family: 'Lato', sans-serif;">Blood Group:</span> {{this?.l_patient_master?.blood_group}}</p>
         <p class="!m-0"><span class="font-medium" style="font-family: 'Lato', sans-serif;">Requested Date:</span> {{this?.l_patient_invsetigation_details_by_id?.entryDate}}</p>
-        <p class="!m-0"><span class="font-medium" style="font-family: 'Lato', sans-serif;">Contact No:</span> {{this?.l_patient_master?.gender}}</p>
+        <p class="!m-0"><span class="font-medium" style="font-family: 'Lato', sans-serif;">Contact No:</span> {{this?.l_patient_master?.mobile_no}}</p>
       </div>
     </div>
   </div>
@@ -20,41 +20,46 @@
   </div>
   <!-- Test Results Section -->
   <div class="mb-6">
-    <table *ngIf="l_patient_invsetigation_details_by_id?.patientInvestigationLevel2List?.length" class="w-full border-collapse border border-gray-300 text-sm">
+    <table *ngIf="l_patient_invsetigation_details_by_id?.patientInvestigationLevel2List?.length"
+       class="w-full text-sm">
       <thead>
         <tr class="bg-gray-100">
-          <th class="border border-gray-300 px-4 py-2 text-left" style="font-family: 'Lato', sans-serif;">Investigation</th>
-          <th class="border border-gray-300 px-4 py-2 text-left" style="font-family: 'Lato', sans-serif;">Result</th>
-          <th class="border border-gray-300 px-4 py-2 text-left" style="font-family: 'Lato', sans-serif;">Reference Value</th>
-          <th class="border border-gray-300 px-4 py-2 text-left" style="font-family: 'Lato', sans-serif;">Unit</th>
+          <th class="px-4 py-2 text-left" style="font-family: 'Lato', sans-serif;">Investigation</th>
+          <th class="px-4 py-2 text-left" style="font-family: 'Lato', sans-serif;">Result</th>
+          <th class="px-4 py-2 text-left" style="font-family: 'Lato', sans-serif;">Reference Value</th>
+          <th class="px-4 py-2 text-left" style="font-family: 'Lato', sans-serif;">Unit</th>
         </tr>
       </thead>
       <tbody>
         <ng-container *ngFor="let patientInvestigationLevel2 of l_patient_invsetigation_details_by_id?.patientInvestigationLevel2List">
           <tr>
-            <td class="border border-gray-300 px-4 py-2" style="font-family: 'Lato', sans-serif;">{{patientInvestigationLevel2?.investigationLevel2?.investigation_level2_name}}</td>
-            <td class="border border-gray-300 px-4 py-2" style="font-family: 'Lato', sans-serif;">
+            <td class="px-4 py-2" style="font-family: 'Lato', sans-serif;">{{patientInvestigationLevel2?.investigationLevel2?.investigation_level2_name}}</td>
+            <td class="px-4 py-2" style="font-family: 'Lato', sans-serif;">
               <ng-container *ngIf="l_component_type === 'REPORT' && patientInvestigationLevel2?.investigationLevel2?.referenceRange">{{patientInvestigationLevel2.result}}</ng-container>
-              <ng-container *ngIf="l_component_type === 'GENERATE' && patientInvestigationLevel2?.investigationLevel2?.referenceRange"><input type="text" pInputText  maxlength="3" type="number" [(ngModel)]="patientInvestigationLevel2.result"></ng-container>
+              <ng-container *ngIf="l_component_type === 'GENERATE' && patientInvestigationLevel2?.investigationLevel2?.referenceRange">
+                <input type="text" pInputText maxlength="3" type="number" [(ngModel)]="patientInvestigationLevel2.result">
+              </ng-container>
             </td>
-            <td class="border border-gray-300 px-4 py-2" style="font-family: 'Lato', sans-serif;">{{patientInvestigationLevel2?.investigationLevel2?.referenceRange}}</td>
-            <td class="border border-gray-300 px-4 py-2" style="font-family: 'Lato', sans-serif;">{{patientInvestigationLevel2?.investigationLevel2?.unit}}</td>
+            <td class="px-4 py-2" style="font-family: 'Lato', sans-serif;">{{patientInvestigationLevel2?.investigationLevel2?.referenceRange}}</td>
+            <td class="px-4 py-2" style="font-family: 'Lato', sans-serif;">{{patientInvestigationLevel2?.investigationLevel2?.unit}}</td>
           </tr>
           <ng-container *ngFor="let patientInvestigationLevel3 of patientInvestigationLevel2?.patientInvestigationLevel3List">
             <tr>
-              <td class="border border-gray-300 px-4 py-2 pl-8" style="font-family: 'Lato', sans-serif;">{{patientInvestigationLevel3?.investigationLevel3?.investigation_level3_name}}</td>
-              <td class="border border-gray-300 px-4 py-2" style="font-family: 'Lato', sans-serif;">
-                <ng-container *ngIf="l_component_type === 'REPORT' && patientInvestigationLevel3?.investigationLevel3?.referenceRange">{{patientInvestigationLevel2.result}}</ng-container>
-                <ng-container *ngIf="l_component_type === 'GENERATE' && patientInvestigationLevel3?.investigationLevel3?.referenceRange"><input type="text" pInputText  maxlength="3" type="number" [(ngModel)]="patientInvestigationLevel3.result"></ng-container>
+              <td class="px-4 py-2 pl-8" style="font-family: 'Lato', sans-serif;">{{patientInvestigationLevel3?.investigationLevel3?.investigation_level3_name}}</td>
+              <td class="px-4 py-2" style="font-family: 'Lato', sans-serif;">
+                <ng-container *ngIf="l_component_type === 'REPORT' && patientInvestigationLevel3?.investigationLevel3?.referenceRange">{{patientInvestigationLevel3.result}}</ng-container>
+                <ng-container *ngIf="l_component_type === 'GENERATE' && patientInvestigationLevel3?.investigationLevel3?.referenceRange">
+                  <input type="text" pInputText maxlength="3" type="number" [(ngModel)]="patientInvestigationLevel3.result">
+                </ng-container>
               </td>
-              <td class="border border-gray-300 px-4 py-2" style="font-family: 'Lato', sans-serif;">{{patientInvestigationLevel3?.investigationLevel3?.referenceRange}}</td>
-              <td class="border border-gray-300 px-4 py-2" style="font-family: 'Lato', sans-serif;">{{patientInvestigationLevel3?.investigationLevel3?.unit}}</td>
+              <td class="px-4 py-2" style="font-family: 'Lato', sans-serif;">{{patientInvestigationLevel3?.investigationLevel3?.referenceRange}}</td>
+              <td class="px-4 py-2" style="font-family: 'Lato', sans-serif;">{{patientInvestigationLevel3?.investigationLevel3?.unit}}</td>
             </tr>
           </ng-container>
         </ng-container>
-
       </tbody>
     </table>
+
   </div>
 
   <!-- Doctor's Notes Section -->
@@ -65,6 +70,6 @@
 </div>
 <p-toast />
 
-<p-dialog header="Select Time For Report" [modal]="true" [(visible)]="l_cron_modal_visible" [style]="{ width: '50vw' }">
-  <app-cron-generation-master (l_get_cron_expression)="l_generated_cron_expresion = $event; scheduleReportForReportPrint()"></app-cron-generation-master>
+<p-dialog header="Select Time For Report" [modal]="true" [(visible)]="l_cron_modal_visible" [style]="{ width: '60vw' }">
+  <app-cron-generation-master (l_get_report_name)="l_report_name_by_user = $event;" (l_get_cron_expression)="l_generated_cron_expresion = $event; scheduleReportForReportPrint()"></app-cron-generation-master>
 </p-dialog> 

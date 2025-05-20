@@ -9,6 +9,7 @@ import { ClinicalHomeComponent } from './modules/Clinical Module/clinical-home.c
 import { AdminModuleComponent } from './modules/admin-module/admin-module.component';
 import { ReportSchedulesComponent } from './modules/Report-schedules/report-schedules.component';
 import { ReportLogsComponent } from './modules/Report-schedules/report-logs/report-logs.component';
+import { AdminSettingsComponent } from './modules/admin-module/admin-settings/admin-settings.component';
 
 
 export const routes: Routes = [
@@ -52,19 +53,18 @@ export const routes: Routes = [
     },
     { path: 'admin',
       component: AdminModuleComponent,
-      children: []
+      children: [
+        {path : 'settings', component : AdminSettingsComponent},
+      ]
     },
     {
-      path: 'schedules',
+      path: 'reportlogs',
       component: ReportSchedulesComponent,
       children: [
         {path : '', component : ReportLogsComponent},
         //{path : 'reportlogs', component : ReportLogsComponent},
       ],
     },
-    {
-      path: 'generate-report/:patientInvestigationLevel1Id',
-      component: GenerateReportComponent,
-    },
+    {path : 'generate-report-print', component : GenerateReportComponent},
     { path: '**', component: NotFoundComponent }
 ];
